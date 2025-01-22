@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gerenciamento de Produtos</title>
+</head>
+<body>
+   <h1>Adicionar Novo Produto</h1>
+
+   <form id="produto-form">
+       <label for="nome">Nome:</label><br>
+       <input type="text" id="nome" name="nome" required><br><br>
+
+       <label for="codigo">Código:</label><br>
+       <input type="number" id="codigo" name="codigo" required><br><br>
+
+       <label for="quantidade">Quantidade:</label><br>
+       <input type="number" id="quantidade" name="quantidade" required><br><br>
+
+       <label for="categoria">Categoria:</label><br>
+       <input type="text" id="categoria" name="categoria" required><br><br>
+
+       <button type="submit">Adicionar Produto</button>
+   </form>
+
+   <div id="mensagem"></div>
+
+   <h2>Lista de Produtos</h2>
+   <table border="1" id="produtos-tabela">
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>Nome</th>
+               <th>Código</th>
+               <th>Quantidade</th>
+               <th>Categoria</th>
+               <th>Ações</th>
+           </tr>
+       </thead>
+       <tbody>
+           <!-- Os produtos serão inseridos aqui -->
+       </tbody>
+   </table>
+
+   <script>
+       // Função para enviar o formulário via JavaScript
+       document.getElementById("produto-form").addEventListener("submit", function(event) {
+           event.preventDefault(); // Impede o comportamento padrão do formulário
+
+           const produtoData = {
+               nome: document.getElementById("nome").value,
+               codigo: document.getElementById("codigo").value,
+               quantidade: document.getElementById("quantidade").value,
+               categoria: document.getElementById("categoria").value
+           };
+
+           fetch("/api/produtos", {
+               method: "POST",
+               headers: {
+                   "Content-Type": "application/json"
+               },
+               body: JSON.stringify(produtoData)
+           })
+           .then(response => response.json())
+           .then(data => {
+               const mensagemDiv = document.getElementById("mensagem");
+               if (data.id) {
+                   mensagemDiv.textContent = `Produto criado com sucesso. ID: ${data.id}`;
+                   carregarProdutos();
+               } else {
+                   mensagemDiv.textContent = `Erro: ${data.error || 'Erro desconhecido.'}`;
+               }
+               document.getElementById("produto-form").reset();
+           })
+           .catch(error => {
+               console.error("Erro:", error);
+               document.getElementById("mensagem").textContent = "Erro ao criar o produto.";
+           });
+       });
+
+        function carregarProdutos() {
+            fetch("/api/produtos", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(response => response.json())
+            .then(produtos => {
+                if (Array.isArray(produtos)) {
+                    const tabelaBody = document.getElementById("produtos-tabela").querySelector("tbody");
+                    tabelaBody.innerHTML = ""; // Limpar a tabela antes de preencher
+                    produtos.forEach(produto => {
+                        const row = document.createElement("tr");
+
+                        const idCell = document.createElement("td");
+                        idCell.textContent = produto._id;
+                        row.appendChild(idCell);
+
+                        const nomeCell = document.createElement("td");
+                        nomeCell.textContent = produto.nome;
+                        row.appendChild(nomeCell);
+
+                        const codigoCell = document.createElement("td");
+                        codigoCell.textContent = produto.codigo;
+                        row.appendChild(codigoCell);
+
+                        const quantidadeCell = document.createElement("td");
+                        quantidadeCell.textContent = produto.quantidade;
+                        row.appendChild(quantidadeCell);
+
+                        const categoriaCell = document.createElement("td");
+                        categoriaCell.textContent = produto.categoria;
+                        row.appendChild(categoriaCell);
+
+                        const acoesCell = document.createElement("td");
+                        const deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Excluir";
+                        deleteButton.onclick = function() {
+                            deletarProduto(produto._id);
+                        };
+                        acoesCell.appendChild(deleteButton);
+                        row.appendChild(acoesCell);
+
+                        tabelaBody.appendChild(row);
+                    });
+                } else {
+                    console.error("Resposta da API não é um array:", produtos);
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao carregar produtos:", error);
+            });
+        }
+
+       // Função para deletar produto
+       function deletarProduto(produtoId) {
+           fetch(`/api/produtos/${produtoId}`, {
+               method: "DELETE"
+           })
+           .then(response => response.json())
+           .then(data => {
+               if (data.message) {
+                   document.getElementById("mensagem").textContent = data.message;
+                   carregarProdutos();
+               } else {
+                   document.getElementById("mensagem").textContent = `Erro: ${data.error}`;
+               }
+           })
+           .catch(error => {
+               console.error("Erro ao deletar produto:", error);
+               document.getElementById("mensagem").textContent = "Erro ao deletar produto.";
+           });
+       }
+
+       // Carregar produtos ao iniciar a página
+       carregarProdutos();
+   </script>
+</body>
+</html>

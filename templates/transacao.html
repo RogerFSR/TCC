@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gerenciamento de Produtos</title>
+</head>
+<body>
+   <h1>Adicionar Nova Transacao</h1>
+
+   <form id="produto-form">
+       <label for="entrada">Entrada:</label><br>
+       <input type="number" id="entrada" name="entrada" required><br><br>
+
+       <label for="saida">Saidas de Produtos :</label><br>
+       <input type="text" id="saida" name="saida" required><br><br>
+
+       <button type="submit">Adicionar Produto</button>
+   </form>
+
+   <div id="mensagem"></div>
+
+   <h2>Lista de Transacoes</h2>
+   <table border="1" id="transacoes-tabela">
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>Entrada</th>
+               <th>Saida de Produtos</th>
+           </tr>
+       </thead>
+       <tbody>
+           <!-- Os produtos serão inseridos aqui -->
+       </tbody>
+   </table>
+
+   <script>
+       // Função para enviar o formulário via JavaScript
+       document.getElementById("produto-form").addEventListener("submit", function(event) {
+           event.preventDefault(); // Impede o comportamento padrão do formulário
+
+           const produtoData = {
+               entrada: document.getElementById("entrada").value,
+               saida: document.getElementById("saida").value
+           };
+
+           fetch("/api/transacoes", {
+               method: "POST",
+               headers: {
+                   "Content-Type": "application/json"
+               },
+               body: JSON.stringify(produtoData)
+           })
+           .then(response => response.json())
+           .then(data => {
+               const mensagemDiv = document.getElementById("mensagem");
+               if (data.id) {
+                   mensagemDiv.textContent = `Produto criado com sucesso. ID: ${data.id}`;
+                   carregarTransacoes();
+               } else {
+                   mensagemDiv.textContent = `Erro: ${data.error || 'Erro desconhecido.'}`;
+               }
+               document.getElementById("produto-form").reset();
+           })
+           .catch(error => {
+               console.error("Erro:", error);
+               document.getElementById("mensagem").textContent = "Erro ao criar a transacao.";
+           });
+       });
+
+        function carregarTransacoes() {
+            fetch("/api/transacoes", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(response => response.json())
+            .then(transacoes => {
+                if (Array.isArray(transacoes)) {
+                    const tabelaBody = document.getElementById("transacoes-tabela").querySelector("tbody");
+                    tabelaBody.innerHTML = ""; // Limpar a tabela antes de preencher
+                    transacoes.forEach(transacao => {
+                        const row = document.createElement("tr");
+
+                        const idCell = document.createElement("td");
+                        idCell.textContent = transacao._id;
+                        row.appendChild(idCell);
+
+                        const entradaCell = document.createElement("td");
+                        entradaCell.textContent = transacao.entrada;
+                        row.appendChild(entradaCell);
+
+                        const saidaCell = document.createElement("td");
+                        saidaCell.textContent = transacao.saida;
+                        row.appendChild(saidaCell);
+
+                        const acoesCell = document.createElement("td");
+                        const deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Excluir";
+                        deleteButton.onclick = function() {
+                            deletarTransacao(transacao._id);
+                        };
+                        acoesCell.appendChild(deleteButton);
+                        row.appendChild(acoesCell);
+
+                        tabelaBody.appendChild(row);
+                    });
+                } else {
+                    console.error("Resposta da API não é um array:", transacoes);
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao carregar produtos:", error);
+            });
+        }
+
+       // Função para deletar produto
+       function deletarTransacao(transacaoId) {
+           fetch(`/api/transacoes/${transacaoId}`, {
+               method: "DELETE"
+           })
+           .then(response => response.json())
+           .then(data => {
+               if (data.message) {
+                   document.getElementById("mensagem").textContent = data.message;
+                   carregarProdutos();
+               } else {
+                   document.getElementById("mensagem").textContent = `Erro: ${data.error}`;
+               }
+           })
+           .catch(error => {
+               console.error("Erro ao deletar transacao:", error);
+               document.getElementById("mensagem").textContent = "Erro ao deletar transacao.";
+           });
+       }
+
+       // Carregar produtos ao iniciar a página
+       carregarTransacoes();
+   </script>
+</body>
+</html>

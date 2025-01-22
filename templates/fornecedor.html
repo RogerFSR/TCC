@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gerenciamento de Produtos</title>
+</head>
+<body>
+   <h1>Adicionar Novo Fornecedor</h1>
+
+   <form id="produto-form">
+       <label for="nome">Nome:</label><br>
+       <input type="text" id="nome" name="nome" required><br><br>
+
+       <label for="codigo">Contato:</label><br>
+       <input type="text" id="contato" name="codigo" required><br><br>
+
+       <label for="quantidade">Produtos Fornecidos:</label><br>
+       <input type="text" id="produtosFornecidos" name="quantidade" required><br><br>
+
+       <button type="submit">Adicionar Fornecedor</button>
+   </form>
+
+   <div id="mensagem"></div>
+
+   <h2>Lista de Fornecedores</h2>
+   <table border="1" id="fornecedores-tabela">
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>Nome</th>
+               <th>Contato</th>
+               <th>Produtos Fornecidos</th>
+           </tr>
+       </thead>
+       <tbody>
+           <!-- Os produtos serão inseridos aqui -->
+       </tbody>
+   </table>
+
+   <script>
+       // Função para enviar o formulário via JavaScript
+       document.getElementById("produto-form").addEventListener("submit", function(event) {
+           event.preventDefault(); // Impede o comportamento padrão do formulário
+
+           const fornecedorData = {
+               nome: document.getElementById("nome").value,
+               contato: document.getElementById("contato").value,
+               produtosFornecidos: document.getElementById("produtosFornecidos").value
+           };
+
+           fetch("/api/fornecedores", {
+               method: "POST",
+               headers: {
+                   "Content-Type": "application/json"
+               },
+               body: JSON.stringify(fornecedorData)
+           })
+           .then(response => response.json())
+           .then(data => {
+               const mensagemDiv = document.getElementById("mensagem");
+               if (data.id) {
+                   mensagemDiv.textContent = `Fornecedor criado com sucesso. ID: ${data.id}`;
+                   carregarFornecedores();
+               } else {
+                   mensagemDiv.textContent = `Erro: ${data.error || 'Erro desconhecido.'}`;
+               }
+               document.getElementById("produto-form").reset();
+           })
+           .catch(error => {
+               console.error("Erro:", error);
+               document.getElementById("mensagem").textContent = "Erro ao criar o fornecedor.";
+           });
+       });
+
+        function carregarFornecedores() {
+            fetch("/api/fornecedores", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(response => response.json())
+            .then(fornecedores => {
+                if (Array.isArray(fornecedores)) {
+                    const tabelaBody = document.getElementById("fornecedores-tabela").querySelector("tbody");
+                    tabelaBody.innerHTML = ""; // Limpar a tabela antes de preencher
+                    fornecedores.forEach(fornecedor => {
+                        const row = document.createElement("tr");
+
+                        const idCell = document.createElement("td");
+                        idCell.textContent = fornecedor._id;
+                        row.appendChild(idCell);
+
+                        const nomeCell = document.createElement("td");
+                        nomeCell.textContent = fornecedor.nome;
+                        row.appendChild(nomeCell);
+
+                        const contatoCell = document.createElement("td");
+                        contatoCell.textContent = fornecedor.contato;
+                        row.appendChild(contatoCell);
+
+                        const produtosFornecidosCell = document.createElement("td");
+                        produtosFornecidosCell.textContent = fornecedor.produtosFornecidos;
+                        row.appendChild(produtosFornecidosCell);
+
+                        const acoesCell = document.createElement("td");
+                        const deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Excluir";
+                        deleteButton.onclick = function() {
+                            deletarFornecedor(produto._id);
+                        };
+                        acoesCell.appendChild(deleteButton);
+                        row.appendChild(acoesCell);
+
+                        tabelaBody.appendChild(row);
+                    });
+                } else {
+                    console.error("Resposta da API não é um array:", produtos);
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao carregar fornecedores:", error);
+            });
+        }
+
+       // Função para deletar produto
+       function deletarFornecedor(produtoId) {
+           fetch(`/api/fornecedores/${produtoId}`, {
+               method: "DELETE"
+           })
+           .then(response => response.json())
+           .then(data => {
+               if (data.message) {
+                   document.getElementById("mensagem").textContent = data.message;
+                   carregarProdutos();
+               } else {
+                   document.getElementById("mensagem").textContent = `Erro: ${data.error}`;
+               }
+           })
+           .catch(error => {
+               console.error("Erro ao deletar fornecedor:", error);
+               document.getElementById("mensagem").textContent = "Erro ao deletar fornecedor.";
+           });
+       }
+
+       // Carregar produtos ao iniciar a página
+       carregarFornecedores();
+   </script>
+</body>
+</html>

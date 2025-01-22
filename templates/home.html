@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <title>Gestão de Produtos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body style="background-color: #1a1a1a;">
+
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background: #333;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="margin-left: 10px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+              </svg>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Gestão de Produtos</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+            <div class="mt-4 p-5 text-white rounded" style="background: #333;">
+                <button class="btn btn-primary mb-3"><p class="h2">Adicionar Produto</p></button>
+                <p class="">Para adicionar um novo produto clique no botão abaixo</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalProdutos"><p class="h6">Adicionar</p></button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mt-4 p-5 text-white rounded" style="background: #333;">
+                <button class="btn btn-warning mb-3"><p class="h2">Adicionar Fornecedor</p></button>
+                <p class="">Para adicionar um novo fornecedor clique no botão abaixo</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalFornecedores"><p class="h6">Adicionar</p></button>
+            </div>
+        </div>
+        <div class="col">
+          <div class="mt-4 p-5 text-white rounded" style="background: #333;">
+            <button class="btn btn-danger mb-3"><p class="h2">Adicionar Transacao</p></button>
+            <p class="">Para adicionar uma nova transacao clique no botão abaixo</p>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTransacoes"><p class="h6">Adicionar</p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="mt-4 p-5 text-white rounded" style="background: #333;">
+            <h3 class="h3 mb-4">Produtos</h3>
+            <table id="produtos-tabela" class="table table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Codigo</th>
+                  <th>Nome</th>
+                  <th>Quantidade</th>
+                  <th>Ações</th>
+                  <td>Atualizar</td>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mt-4 p-5 text-white rounded" style="background: #333;">
+            <h3 class="h3 mb-4">Fornecedores</h3>
+            <table id="fornecedores-tabela" class="table table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Contato</th>
+                  <th>Nome</th>
+                  <th>Produtos Fornecidos</th>
+                  <th>Ações</th>
+                  <td>Atualizar</td>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mt-4 p-5 text-white rounded" style="background: #333;">
+            <p class="h3 mb-4">Transacoes</p>
+            <table id="transacoes-tabela" class="table table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Entrada</th>
+                  <th>Saida de Produtos</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Conteúdo carregado dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DOS PRODUTOS -->
+    <div class="modal fade" id="modalProdutos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalProdutos" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" style="color: white;">Adicionar Produto</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text">Nome</span>
+                <input type="text" class="form-control" id="nome-produto" placeholder="Nome do Produto">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Código</span>
+              <input type="number" class="form-control" id="codigo-produto" placeholder="Digite o Código do Produto">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Quantidade</span>
+              <input type="text" class="form-control" id="quantidade-produto" placeholder="Digite a Quantidade do Produto">
+            </div>
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text">Categoria</span>
+                <input type="text" class="form-control" id="categoria-produto" placeholder="Digite a Categoria do Produto">
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-success" id="btnProduto">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DOS FORNECEDORES -->
+    <div class="modal fade" id="modalFornecedores" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalFornecedores" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" style="color: white;">Adicionar Fornecedor</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text">Nome</span>
+                <input type="text" class="form-control" id="nome-fornecedor" placeholder="Nome do Fornecedor">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Contato</span>
+              <input type="text" class="form-control" id="contato-fornecedor" placeholder="Digite o Contato do Fornecedor">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Produtos Fornecidos</span>
+              <input type="text" class="form-control" id="produtosFornecidos" placeholder="Digite os Produtos Fornecidos pelo Fornecedor">
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-success" id="btnFornecedor">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DAS TRANSACOES -->
+    <div class="modal fade" id="modalTransacoes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTransacoes" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" style="color: white;">Realizar Transacao</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text">Entrada</span>
+                <input type="number" class="form-control" id="entrada" placeholder="Nome do Fornecedor">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Saidas de Produtos</span>
+              <input type="text" class="form-control" id="saida" placeholder="Digite o Contato do Fornecedor">
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-success" id="btnTransacao">Realizar Transacao</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL ATUALIZAR PRODUTO -->
+    <div class="modal fade" id="modalAtualizarProduto" tabindex="-1" aria-labelledby="modalAtualizarProduto" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="color: white;">Atualizar Produto</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Nome</span>
+              <input type="text" class="form-control" id="atualizar-nome-produto">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Código</span>
+              <input type="text" class="form-control" id="atualizar-codigo-produto">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Quantidade</span>
+              <input type="text" class="form-control" id="atualizar-quantidade-produto">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Categoria</span>
+              <input type="text" class="form-control" id="atualizar-categoria-produto">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btnAtualizarProduto">Atualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL ATUALIZAR FORNECEDOR -->
+    <div class="modal fade" id="modalAtualizarFornecedor" tabindex="-1" aria-labelledby="modalAtualizarFornecedor" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="color: white;">Atualizar Fornecedor</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Nome</span>
+              <input type="text" class="form-control" id="atualizar-nome-fornecedor">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Contato</span>
+              <input type="text" class="form-control" id="atualizar-contato-fornecedor">
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <span class="input-group-text">Produtos Fornecidos</span>
+              <input type="text" class="form-control" id="atualizar-produtosFornecidos">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btnAtualizarFornecedor">Atualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <script>
+    /*
+    ------------------------------------------------------------------------------------------------------------------------------
+    AREA CRUD PRODUTO
+    ------------------------------------------------------------------------------------------------------------------------------
+    */
+    const btnProduto = document.getElementById("btnProduto");
+
+    btnProduto.onclick = function () {
+      const produtoData = {
+        nome: document.getElementById("nome-produto").value,
+        codigo: document.getElementById("codigo-produto").value,
+        quantidade: document.getElementById("quantidade-produto").value,
+        categoria: document.getElementById("categoria-produto").value
+      };
+
+      fetch_post_createProduto(produtoData);
+    };
+
+    function fetch_post_createProduto(produtoData) {
+      const uri = "/api/produtos";
+
+      fetch(uri, {
+        method: "POST",
+        body: JSON.stringify(produtoData),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.id) {
+          console.log(`Produto criado com sucesso. ID: ${data.id}`);
+          carregarProdutos();
+          location.reload();
+        } else {
+          console.log(`Erro: ${data.error || 'Erro desconhecido.'}`);
+        }
+        document.getElementById("nome-produto").value = ""; // Resetando o formulário
+        document.getElementById("codigo-produto").value = "";
+        document.getElementById("quantidade-produto").value = "";
+        document.getElementById("categoria-produto").value = "";
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+        document.getElementById("mensagem").textContent = "Erro ao criar o produto.";
+      });
+    }
+
+    function carregarProdutos() {
+      fetch("/api/produtos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then(response => response.json())
+      .then(produtos => {
+        if (Array.isArray(produtos)) {
+          const tabelaBody = document.getElementById("produtos-tabela").querySelector("tbody");
+          tabelaBody.innerHTML = ""; // Limpar a tabela antes de preencher
+          produtos.forEach(produto => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${produto.codigo}</td>
+              <td>${produto.nome}</td>
+              <td>${produto.quantidade}</td>
+              <td><button class="btn btn-danger btn-sm" onclick="excluirProduto('${produto._id}')">Excluir</button></td>
+              <td><button class="btn btn-warning btn-sm" onclick="abrirModalAtualizarProduto('${produto._id}')">Atualizar</button></td>
+            `;
+            tabelaBody.appendChild(row);
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao carregar os produtos:", error);
+      });
+    }
+
+    function excluirProduto(id) {
+      fetch(`/api/produtos/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then(() => {
+        console.log(`Produto ${id} excluído com sucesso`);
+        carregarProdutos();
+      })
+      .catch(error => {
+        console.error("Erro ao excluir o produto:", error);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", carregarProdutos);
+
+    function abrirModalAtualizarProduto(id) {
+      fetch(`/api/produtos/${id}`)
+        .then(response => response.json())
+        .then(produto => {
+          document.getElementById('atualizar-nome-produto').value = produto.nome;
+          document.getElementById('atualizar-codigo-produto').value = produto.codigo;
+          document.getElementById('atualizar-quantidade-produto').value = produto.quantidade;
+          document.getElementById('atualizar-categoria-produto').value = produto.categoria;
+          document.getElementById('btnAtualizarProduto').onclick = function () {
+            atualizarProduto(id);
+          };
+          new bootstrap.Modal(document.getElementById('modalAtualizarProduto')).show();
+        });
+    }
+
+    function atualizarProduto(id) {
+      const produtoAtualizado = {
+        nome: document.getElementById('atualizar-nome-produto').value,
+        codigo: document.getElementById('atualizar-codigo-produto').value,
+        quantidade: document.getElementById('atualizar-quantidade-produto').value,
+        categoria: document.getElementById('atualizar-categoria-produto').value,
+      };
+
+      fetch(`/api/produtos/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(produtoAtualizado),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(() => {
+        carregarProdutos();
+        location.reload();
+      })
+      .catch(error => console.error('Erro ao atualizar o produto:', error));
+    }
+
+    /*
+    ------------------------------------------------------------------------------------------------------------------------------
+    AREA CRUD FORNECEDOR
+    ------------------------------------------------------------------------------------------------------------------------------
+    */
+    const btnFornecedor = document.getElementById("btnFornecedor");
+
+    btnFornecedor.onclick = function () {
+      const fornecedorData = {
+        nome: document.getElementById("nome-fornecedor").value,
+        contato: document.getElementById("contato-fornecedor").value,
+        produtosFornecidos: document.getElementById("produtosFornecidos").value
+      };
+
+      fetch_post_createFornecedor(fornecedorData);
+    };
+
+    function fetch_post_createFornecedor(fornecedorData) {
+      const uri = "/api/fornecedores";
+
+      fetch(uri, {
+        method: "POST",
+        body: JSON.stringify(fornecedorData),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.id) {
+          console.log(`Fornecedor criado com sucesso. ID: ${data.id}`);
+          carregarFornecedores();
+          location.reload();
+        } else {
+          console.log(`Erro: ${data.error || 'Erro desconhecido.'}`);
+        }
+        document.getElementById("nome-fornecedor").value = ""; // Resetando o formulário
+        document.getElementById("contato-fornecedor").value = "";
+        document.getElementById("produtosFornecidos").value = "";
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+        document.getElementById("mensagem").textContent = "Erro ao criar o fornecedor.";
+      });
+    }
+
+    function carregarFornecedores() {
+      fetch("/api/fornecedores", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then(response => response.json())
+      .then(fornecedores => {
+        if (Array.isArray(fornecedores)) {
+          const tabelaBody = document.getElementById("fornecedores-tabela").querySelector("tbody");
+          tabelaBody.innerHTML = ""; // Limpar a tabela antes de preencher
+          fornecedores.forEach(fornecedor => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${fornecedor.contato}</td>
+              <td>${fornecedor.nome}</td>
+              <td>${fornecedor.produtosFornecidos}</td>
+              <td><button class="btn btn-danger btn-sm" onclick="deletarFornecedor('${fornecedor._id}')">Excluir</button></td>
+              <td><button class="btn btn-warning btn-sm" onclick="abrirModalAtualizarFornecedor('${fornecedor._id}')">Atualizar</button></td>
+            `;
+            tabelaBody.appendChild(row);
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao carregar fornecedores:", error);
+      });
+    }
+
+    function deletarFornecedor(id) {
+      fetch(`/api/fornecedores/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then(() => {
+        console.log(`Fornecedor ${id} excluído com sucesso`);
+        carregarFornecedores();
+      })
+      .catch(error => {
+        console.error("Erro ao excluir o fornecedor:", error);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", carregarFornecedores);
+
+    function abrirModalAtualizarFornecedor(id) {
+      fetch(`/api/fornecedores/${id}`)
+        .then(response => response.json())
+        .then(fornecedor => {
+          document.getElementById('atualizar-nome-fornecedor').value = fornecedor.nome;
+          document.getElementById('atualizar-contato-fornecedor').value = fornecedor.contato;
+          document.getElementById('atualizar-produtosFornecidos').value = fornecedor.produtosFornecidos;
+          document.getElementById('btnAtualizarFornecedor').onclick = function () {
+            atualizarFornecedor(id);
+          };
+          new bootstrap.Modal(document.getElementById('modalAtualizarFornecedor')).show();
+        });
+    }
+
+    function atualizarFornecedor(id) {
+      const fornecedorAtualizado = {
+        nome: document.getElementById('atualizar-nome-fornecedor').value,
+        contato: document.getElementById('atualizar-contato-fornecedor').value,
+        produtosFornecidos: document.getElementById('atualizar-produtosFornecidos').value,
+      };
+
+      fetch(`/api/fornecedores/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(fornecedorAtualizado),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(() => {
+        carregarFornecedores();
+        location.reload();
+      })
+      .catch(error => console.error('Erro ao atualizar o fornecedor:', error));
+    }
+
+
+    /*
+    ------------------------------------------------------------------------------------------------------------------------------
+    AREA CRUD TRANSACAO
+    ------------------------------------------------------------------------------------------------------------------------------
+    */
+    const btnTransacao = document.getElementById("btnTransacao");
+
+    btnTransacao.onclick = function () {
+      const transacaoData = {
+        entrada: document.getElementById("entrada").value,
+        saida: document.getElementById("saida").value
+      };
+
+      fetch_post_createTransacao(transacaoData);
+    };
+
+    function fetch_post_createTransacao(transacaoData) {
+      const uri = "/api/transacoes";
+
+      fetch(uri, {
+        method: "POST",
+        body: JSON.stringify(transacaoData),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.id) {
+          console.log(`Transação criada com sucesso. ID: ${data.id}`);
+          carregarTransacoes();
+          location.reload(); // Atualiza a página após a criação
+        } else {
+          console.log(`Erro: ${data.error || 'Erro desconhecido.'}`);
+        }
+        document.getElementById("entrada").value = ""; // Limpar o formulário
+        document.getElementById("saida").value = "";
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+        document.getElementById("mensagem").textContent = "Erro ao criar a transação.";
+      });
+    }
+
+    function carregarTransacoes() {
+      fetch("/api/transacoes", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then(response => response.json())
+      .then(transacoes => {
+        if (Array.isArray(transacoes)) {
+          const tabelaBody = document.getElementById("transacoes-tabela").querySelector("tbody");
+          tabelaBody.innerHTML = ""; // Limpar a tabela antes de preencher
+          transacoes.forEach(transacao => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${transacao.entrada}</td>
+              <td>${transacao.saida}</td>
+              <td><button class="btn btn-danger btn-sm" onclick="excluirTransacao('${transacao._id}')">Excluir</button></td>
+            `;
+            tabelaBody.appendChild(row);
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao carregar as transações:", error);
+      });
+    }
+
+    function excluirTransacao(id) {
+      fetch(`/api/transacoes/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      .then(() => {
+        console.log(`Transação ${id} excluída com sucesso`);
+        carregarTransacoes();
+      })
+      .catch(error => {
+        console.error("Erro ao excluir a transação:", error);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", carregarTransacoes);
+
+  </script>
+
+</body>
+</html>
