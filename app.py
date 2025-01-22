@@ -20,12 +20,7 @@ def index():
 #ROTAS DOS PRODUTOS
 #-------------------------------------------------------------------------------------------------------------------------
 
-@app.route('/api/produtos', methods=['POST'])
-def api_create_produto():
-    try:
-        return create_produto()
-    except Exception as e:
-        return jsonify({"error": f"Erro ao criar produto: {str(e)}"}), 500
+
 
 @app.route('/api/produtos', methods=['GET'])
 def api_get_produtos():
