@@ -13,6 +13,23 @@
         android:theme="@style/Theme.Teste"
         tools:targetApi="31">
         <activity
+            android:name=".InfoFuncionariosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NovoProdutoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IdentificacaoVendaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RelatorioActivity"
+            android:exported="false" />
+        <activity android:name=".InfoClientesActivity" />
+        <activity
+            android:name=".NovoClienteActivity"
+            android:exported="false" />
+        <activity android:name=".EditarClienteActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -2,17 +2,68 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/btnInfosToMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <Button
+        android:id="@+id/novo_cliente"
+        style="@style/CustomButton"
+        android:text="@string/cadastrar_cliente"
+        app:layout_constraintBottom_toTopOf="@+id/listar_clientes"
+        app:layout_constraintEnd_toEndOf="@+id/listar_clientes"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/listar_clientes"
+        app:layout_constraintTop_toBottomOf="@+id/Registrar_Venda"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/listar_clientes"
+        style="@style/CustomButton"
+        android:background="@drawable/button_bakcground"
+        android:text="@string/listar_clientes"
+        app:layout_constraintBottom_toTopOf="@+id/gerar_recibo"
+        app:layout_constraintEnd_toEndOf="@+id/gerar_recibo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/gerar_recibo"
+        app:layout_constraintTop_toBottomOf="@+id/novo_cliente"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/Registrar_Venda"
+        style="@style/CustomButton"
+        android:text="@string/registrar_venda"
+        app:layout_constraintBottom_toTopOf="@+id/novo_cliente"
+        app:layout_constraintEnd_toEndOf="@+id/novo_cliente"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/novo_cliente"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/gerar_recibo"
+        style="@style/CustomButton"
+        android:text="@string/gerar_relat_rio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listar_clientes"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/add_produto"
+        android:layout_width="182dp"
+        android:layout_height="52dp"
+        android:text="Adicionar produto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/listar_funcs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Listar funcionarios"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

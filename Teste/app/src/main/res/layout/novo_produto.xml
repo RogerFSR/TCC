@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnInfosToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".NovoProdutoActivity">
+
+        <!-- Código de Barras -->
+        <EditText
+            android:id="@+id/edtCodigoBarras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Código de Barras"
+            android:inputType="number"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Nome do Produto -->
+        <EditText
+            android:id="@+id/edtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Nome do Produto"
+            app:layout_constraintTop_toBottomOf="@+id/edtCodigoBarras"/>
+
+        <!-- Tipo (usaremos Spinner) -->
+        <Spinner
+            android:id="@+id/spinnerTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/edtNome"/>
+
+        <!-- Geladeira (CheckBox) -->
+        <CheckBox
+            android:id="@+id/cbGeladeira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Produto de Geladeira?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTipo"/>
+
+        <!-- Fornecedor (usaremos Spinner) -->
+        <Spinner
+            android:id="@+id/spinnerFornecedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/cbGeladeira"/>
+
+        <!-- Estoque Mínimo -->
+        <EditText
+            android:id="@+id/edtEstoqueMin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Estoque Mínimo"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerFornecedor"/>
+
+        <!-- Estoque Atual -->
+        <EditText
+            android:id="@+id/edtEstoqueAtual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Estoque Atual"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMin"/>
+
+        <!-- Estoque Máximo -->
+        <EditText
+            android:id="@+id/edtEstoqueMax"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Estoque Máximo"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtEstoqueAtual"/>
+
+        <!-- Botão Salvar -->
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Salvar Produto"
+            app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMax"/>
+
+        <!-- Botão Voltar -->
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Voltar"
+            app:layout_constraintTop_toBottomOf="@+id/btnSalvar"/>
+
+        <!-- ProgressBar para operações assíncronas -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Texto de erro -->
+        <TextView
+            android:id="@+id/txtErro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/btnSalvar"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

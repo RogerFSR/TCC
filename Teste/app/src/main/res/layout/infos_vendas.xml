@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="71dp"
+        android:text="Id do funcionário:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="13dp"
+        android:text="CPF do cliente:"
+        app:layout_constraintBottom_toTopOf="@+id/idFunc_txtBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdFunc_txtBox" />
+
+    <EditText
+        android:id="@+id/IdFunc_txtBox"
+        android:layout_width="228dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="150dp"
+        android:backgroundTint="@color/black"
+        android:ems="10"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/idFunc_txtBox"
+        android:layout_width="228dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="150dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <Button
+        android:id="@+id/cadastrar_cliente"
+        android:layout_width="162dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="17dp"
+        android:text="Cadastrar cliente"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="223dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="340dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Voltar_main"
+        android:layout_width="148dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Voltar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

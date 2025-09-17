@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Teste</string>
+    <string name="registrar_venda">Registrar venda</string>
+    <string name="gerar_relat_rio">Gerar relatório</string>
+    <string name="listar_clientes">Listar clientes</string>
+    <string name="cadastrar_cliente">Cadastrar cliente</string>
 </resources>

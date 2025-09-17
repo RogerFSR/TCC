@@ -1,0 +1,10 @@
+<resources>
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">273dp</item>
+        <item name="android:layout_height">61dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/button_bakcground</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+</resources>
