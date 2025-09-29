@@ -11,6 +11,7 @@ import com.example.teste.database.Cliente
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class EditarClienteActivity : AppCompatActivity() {
 
@@ -35,34 +36,34 @@ class EditarClienteActivity : AppCompatActivity() {
         }
 
         // Configura os botões
-        findViewById<Button>(R.id.btnSalvar).setOnClickListener { salvarAlteracoes() }
-        findViewById<Button>(R.id.btnCancelar).setOnClickListener { finish() }
+        findViewById<Button>(R.id.btnSalvarCliente).setOnClickListener { salvarAlteracoes() }
+        findViewById<Button>(R.id.voltar_btn).setOnClickListener { finish() }
     }
 
     private fun preencherCampos(cliente: Cliente) {
-        findViewById<EditText>(R.id.edtNome).setText(cliente.nome)
-        findViewById<EditText>(R.id.edtCpf).setText(cliente.cpf)
-        findViewById<EditText>(R.id.edtEndereco).setText(cliente.endereco)
-        findViewById<EditText>(R.id.edtBairro).setText(cliente.bairro)
-        findViewById<EditText>(R.id.edtCep).setText(cliente.cep)
-        findViewById<EditText>(R.id.edtCidade).setText(cliente.cidade)
-        findViewById<EditText>(R.id.edtTelefone).setText(cliente.telefone)
-        findViewById<EditText>(R.id.edtTelefone2).setText(cliente.telefone2)
-        findViewById<EditText>(R.id.edtEmail).setText(cliente.email)
+        findViewById<EditText>(R.id.nomeCliente).setText(cliente.nome)
+        findViewById<EditText>(R.id.cpfCliente).setText(cliente.cpf)
+        findViewById<EditText>(R.id.endCliente).setText(cliente.endereco)
+        findViewById<EditText>(R.id.bairroCliente).setText(cliente.bairro)
+        findViewById<EditText>(R.id.cepCliente).setText(cliente.cep)
+        findViewById<EditText>(R.id.cidCliente).setText(cliente.cidade)
+        findViewById<EditText>(R.id.telClienteText8).setText(cliente.telefone)
+        findViewById<EditText>(R.id.telCliente2).setText(cliente.telefone2)
+        findViewById<EditText>(R.id.emailCliente).setText(cliente.email)
     }
 
     private fun salvarAlteracoes() {
         // Cria objeto com os dados editados
         val clienteEditado = Cliente(
-            cpf = findViewById<EditText>(R.id.edtCpf).text.toString(),
-            nome = findViewById<EditText>(R.id.edtNome).text.toString(),
-            endereco = findViewById<EditText>(R.id.edtEndereco).text.toString(),
-            bairro = findViewById<EditText>(R.id.edtBairro).text.toString(),
-            cep = findViewById<EditText>(R.id.edtCep).text.toString(),
-            cidade = findViewById<EditText>(R.id.edtCidade).text.toString(),
-            telefone = findViewById<EditText>(R.id.edtTelefone).text.toString(),
-            telefone2 = findViewById<EditText>(R.id.edtTelefone2).text.toString(),
-            email = findViewById<EditText>(R.id.edtEmail).text.toString()
+            cpf = findViewById<EditText>(R.id.cpfCliente).text.toString(),
+            nome = findViewById<EditText>(R.id.nomeCliente).text.toString(),
+            endereco = findViewById<EditText>(R.id.endCliente).text.toString(),
+            bairro = findViewById<EditText>(R.id.bairroCliente).text.toString(),
+            cep = findViewById<EditText>(R.id.cepCliente).text.toString(),
+            cidade = findViewById<EditText>(R.id.cidCliente).text.toString(),
+            telefone = findViewById<EditText>(R.id.telClienteText8).text.toString(),
+            telefone2 = findViewById<EditText>(R.id.telCliente2).text.toString(),
+            email = findViewById<EditText>(R.id.emailCliente).text.toString()
         )
 
         // Salva no banco de dados

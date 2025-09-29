@@ -1,108 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#1C1C1C"
+    tools:context=".EditarClienteActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Cliente"
+        android:textSize="20sp"
+        android:textColor="#C31717"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <!-- Campos de edição -->
-        <EditText
-            android:id="@+id/edtNome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome completo"
-            android:inputType="textPersonName"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/cpfCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="CPF"
+        android:textColorHint="#B0B0B0"
+        android:inputType="number"
+        app:mask="###.###.###-##"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
 
-        <EditText
-            android:id="@+id/edtCpf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="CPF"
-            android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@+id/edtNome"/>
+    <EditText
+        android:id="@+id/nomeCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:textColorHint="#B0B0B0"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@id/cpfCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtEndereco"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Endereço"
-            app:layout_constraintTop_toBottomOf="@+id/edtCpf"/>
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/telClienteText8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Telefone"
+        android:textColorHint="#B0B0B0"
+        android:inputType="phone"
+        app:mask="(##) #####-####"
+        app:layout_constraintTop_toBottomOf="@id/nomeCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtBairro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Bairro"
-            app:layout_constraintTop_toBottomOf="@+id/edtEndereco"/>
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/telCliente2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Telefone 2 (opcional)"
+        android:textColorHint="#B0B0B0"
+        android:inputType="phone"
+        app:mask="(##) #####-####"
+        app:layout_constraintTop_toBottomOf="@id/telClienteText8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtCep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="CEP"
-            android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@+id/edtBairro"/>
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/cepCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="CEP"
+        android:textColorHint="#B0B0B0"
+        android:inputType="number"
+        app:mask="#####-###"
+        app:layout_constraintTop_toBottomOf="@id/telCliente2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtCidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Cidade"
-            app:layout_constraintTop_toBottomOf="@+id/edtCep"/>
+    <EditText
+        android:id="@+id/endCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Endereço"
+        android:textColorHint="#B0B0B0"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/cepCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtTelefone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Telefone principal"
-            android:inputType="phone"
-            app:layout_constraintTop_toBottomOf="@+id/edtCidade"/>
+    <EditText
+        android:id="@+id/bairroCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Bairro"
+        android:textColorHint="#B0B0B0"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/endCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtTelefone2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Telefone secundário"
-            android:inputType="phone"
-            app:layout_constraintTop_toBottomOf="@+id/edtTelefone"/>
+    <EditText
+        android:id="@+id/cidCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Cidade"
+        android:textColorHint="#B0B0B0"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/bairroCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            app:layout_constraintTop_toBottomOf="@+id/edtTelefone2"/>
+    <EditText
+        android:id="@+id/emailCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="E-mail"
+        android:textColorHint="#B0B0B0"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/cidCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <!-- Botões -->
-        <Button
-            android:id="@+id/btnSalvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Salvar Alterações"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail"/>
+    <Button
+        android:id="@+id/btnSalvarCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@id/emailCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/voltar_btn"
+        app:layout_constraintWidth_percent="0.45"
+        android:layout_marginTop="12dp"/>
 
-        <Button
-            android:id="@+id/btnCancelar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Cancelar"
-            app:layout_constraintTop_toBottomOf="@+id/btnSalvar"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/voltar_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:backgroundTint="#F44336"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@id/emailCliente"
+        app:layout_constraintStart_toEndOf="@id/btnSalvarCliente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.45"
+        android:layout_marginTop="12dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import com.example.teste.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class NovoProdutoActivity : AppCompatActivity() {
 
@@ -23,7 +24,7 @@ class NovoProdutoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.novo_produto)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnInfosToMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnVoltar)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -103,9 +104,12 @@ class NovoProdutoActivity : AppCompatActivity() {
         val codigoBarras = findViewById<EditText>(R.id.edtCodigoBarras).text.toString()
         val nome = findViewById<EditText>(R.id.edtNome).text.toString()
         val geladeira = findViewById<CheckBox>(R.id.cbGeladeira).isChecked
-        val estoqueMin = findViewById<EditText>(R.id.edtEstoqueMin).text.toString().toIntOrNull() ?: 0
-        val estoqueAtual = findViewById<EditText>(R.id.edtEstoqueAtual).text.toString().toIntOrNull() ?: 0
-        val estoqueMax = findViewById<EditText>(R.id.edtEstoqueMax).text.toString().toIntOrNull() ?: 0
+        val estoqueMin =
+            findViewById<EditText>(R.id.edtEstoqueMin).text.toString().toIntOrNull() ?: 0
+        val estoqueAtual =
+            findViewById<EditText>(R.id.edtEstoqueAtual).text.toString().toIntOrNull() ?: 0
+        val estoqueMax =
+            findViewById<EditText>(R.id.edtEstoqueMax).text.toString().toIntOrNull() ?: 0
 
         // Validações básicas
         when {
@@ -113,20 +117,28 @@ class NovoProdutoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Informe o código de barras", Toast.LENGTH_SHORT).show()
                 return
             }
+
             nome.isEmpty() -> {
                 Toast.makeText(this, "Informe o nome do produto", Toast.LENGTH_SHORT).show()
                 return
             }
+
             listaTipos.isEmpty() -> {
                 Toast.makeText(this, "Nenhum tipo cadastrado", Toast.LENGTH_SHORT).show()
                 return
             }
+
             listaFornecedores.isEmpty() -> {
                 Toast.makeText(this, "Nenhum fornecedor cadastrado", Toast.LENGTH_SHORT).show()
                 return
             }
+
             estoqueMin > estoqueMax -> {
-                Toast.makeText(this, "Estoque mínimo não pode ser maior que o máximo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Estoque mínimo não pode ser maior que o máximo",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return
             }
         }
@@ -178,7 +190,8 @@ class NovoProdutoActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-            }
+
         }
     }
+}
 }

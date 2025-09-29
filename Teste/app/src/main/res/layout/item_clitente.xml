@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:elevation="4dp">
+    android:background="#2C2C2C"
+    app:cardBackgroundColor="#434343"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Nome e CPF na mesma linha -->
+        <!-- Nome e CPF -->
         <TextView
             android:id="@+id/txtNome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/txtCpf"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/txtCpf"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtCpf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
+            android:textColor="#B0B0B0"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtNome"/>
+            app:layout_constraintStart_toEndOf="@+id/txtNome"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Endereço completo -->
+        <!-- Endereço -->
         <TextView
             android:id="@+id/txtEndereco"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNome"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtNome" />
 
-        <!-- Telefones e Email na mesma linha -->
+        <!-- Telefones e Email -->
         <TextView
             android:id="@+id/txtTelefone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/txtEmail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEndereco"
-            app:layout_constraintEnd_toStartOf="@+id/txtEmail"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
 
         <TextView
             android:id="@+id/txtEmail"
@@ -59,26 +65,34 @@
             android:layout_marginTop="4dp"
             android:textColor="#FF018786"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEndereco"
-            app:layout_constraintStart_toEndOf="@+id/txtTelefone"/>
+            app:layout_constraintStart_toEndOf="@+id/txtTelefone"
+            app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
 
         <!-- Botões de ação -->
         <Button
             android:id="@+id/btnEditar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginTop="8dp"
+            android:backgroundTint="#2962FF"
+            android:clipToOutline="true"
             android:text="Editar"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTelefone"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtTelefone" />
 
         <Button
             android:id="@+id/btnExcluir"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginTop="8dp"
+            android:backgroundTint="#D32F2F"
+            android:clipToOutline="true"
             android:text="Excluir"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmail"/>
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

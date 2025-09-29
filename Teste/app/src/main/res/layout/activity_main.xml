@@ -5,66 +5,113 @@
     android:id="@+id/btnInfosToMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1C1C1C"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/novo_cliente"
-        style="@style/CustomButton"
-        android:text="@string/cadastrar_cliente"
-        app:layout_constraintBottom_toTopOf="@+id/listar_clientes"
-        app:layout_constraintEnd_toEndOf="@+id/listar_clientes"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listar_clientes"
-        app:layout_constraintTop_toBottomOf="@+id/Registrar_Venda"
-        app:layout_constraintVertical_bias="0.5" />
+    <!-- Guideline vertical para dividir as colunas -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-    <Button
-        android:id="@+id/listar_clientes"
-        style="@style/CustomButton"
-        android:background="@drawable/button_bakcground"
-        android:text="@string/listar_clientes"
-        app:layout_constraintBottom_toTopOf="@+id/gerar_recibo"
-        app:layout_constraintEnd_toEndOf="@+id/gerar_recibo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/gerar_recibo"
-        app:layout_constraintTop_toBottomOf="@+id/novo_cliente"
-        app:layout_constraintVertical_bias="0.5" />
-
+    <!-- Coluna esquerda -->
     <Button
         android:id="@+id/Registrar_Venda"
-        style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
         android:text="@string/registrar_venda"
-        app:layout_constraintBottom_toTopOf="@+id/novo_cliente"
-        app:layout_constraintEnd_toEndOf="@+id/novo_cliente"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/novo_cliente"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/listar_clientes"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
+        android:id="@+id/listar_clientes"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
+        android:text="@string/listar_clientes"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/gerar_recibo"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Registrar_Venda"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
         android:id="@+id/gerar_recibo"
-        style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
         android:text="@string/gerar_relat_rio"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listar_clientes"
         app:layout_constraintVertical_bias="0.5" />
 
+    <!-- Coluna direita -->
+    <Button
+        android:id="@+id/novo_cliente"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
+        android:text="@string/cadastrar_cliente"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_produto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
     <Button
         android:id="@+id/add_produto"
-        android:layout_width="182dp"
-        android:layout_height="52dp"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
         android:text="Adicionar produto"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/listar_funcs"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/novo_cliente"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/listar_funcs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Listar funcionarios"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
+        android:text="Listar funcionários"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/add_produto"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

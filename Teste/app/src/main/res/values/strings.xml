@@ -1,7 +1,18 @@
 <resources>
-    <string name="app_name">Teste</string>
+    <string name="app_name">Gerenciamento de Estoque</string>
     <string name="registrar_venda">Registrar venda</string>
     <string name="gerar_relat_rio">Gerar relatório</string>
     <string name="listar_clientes">Listar clientes</string>
     <string name="cadastrar_cliente">Cadastrar cliente</string>
+    <string name="hint_nome">Nome completo</string>
+    <string name="hint_cpf">CPF</string>
+    <string name="hint_endereco">Endereço</string>
+    <string name="hint_bairro">Bairro</string>
+    <string name="hint_cep">CEP</string>
+    <string name="hint_cidade">Cidade</string>
+    <string name="hint_telefone">Telefone principal</string>
+    <string name="hint_telefone2">Telefone secundário</string>
+    <string name="hint_email">E-mail</string>
+    <string name="btn_salvar">Salvar Alterações</string>
+    <string name="btn_cancelar">Cancelar</string>
 </resources>

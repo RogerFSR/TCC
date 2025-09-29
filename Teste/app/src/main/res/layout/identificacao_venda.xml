@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="16dp">
+    android:background="#1C1C1C"
+    android:padding="16dp"
+    tools:context=".VendaActivity">
 
+    <!-- Título -->
     <TextView
         android:id="@+id/titleInfo"
         android:layout_width="wrap_content"
@@ -15,61 +18,105 @@
         android:text="Informações de venda"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/editFuncionario"
+    <!-- EditText ID Funcionário -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutEditFuncionario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:hint="ID do Funcionário"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@id/titleInfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleInfo" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxStrokeColor="#2962FF">
 
-    <EditText
-        android:id="@+id/editCpfCliente"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editFuncionario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID do Funcionário"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- EditText CPF Cliente -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutEditCpfCliente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="CPF do Cliente"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutEditFuncionario"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editFuncionario" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxStrokeColor="#2962FF">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editCpfCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CPF do Cliente"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botão Cadastrar Cliente -->
     <Button
         android:id="@+id/btnCadastrarCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#D32F2F"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#2962FF"
+        android:clipToOutline="true"
         android:text="Cadastrar cliente"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editCpfCliente" />
+        app:cornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutEditCpfCliente" />
 
+    <!-- Botão Confirmar -->
     <Button
         android:id="@+id/btnContinuarVenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#388E3C"
+        android:clipToOutline="true"
         android:text="Confirmar"
         android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnCadastrarCliente" />
 
+    <!-- Botão Voltar -->
     <Button
         android:id="@+id/infos_to_main"
-        android:layout_width="144dp"
-        android:layout_height="39dp"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#D32F2F"
+        android:clipToOutline="true"
         android:text="Voltar"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

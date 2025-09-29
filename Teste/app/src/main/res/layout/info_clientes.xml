@@ -4,33 +4,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/btnInfosToMain"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#1C1C1C"
+    android:padding="16dp">
 
     <!-- Botão Voltar -->
     <Button
         android:id="@+id/list_to_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:backgroundTint="#D32F2F"
+        android:clipToOutline="true"
         android:text="Voltar"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botão Cadastrar -->
+    <!-- Botão Cadastrar Cliente -->
     <Button
         android:id="@+id/novo_cliente"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:backgroundTint="#388E3C"
+        android:clipToOutline="true"
         android:text="Cadastrar cliente"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView -->
+    <!-- RecyclerView Clientes -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewClientes"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:background="#1C1C1C"
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_to_main"/>
+        app:layout_constraintTop_toBottomOf="@id/list_to_main" />
 </androidx.constraintlayout.widget.ConstraintLayout>
