@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnMainToNew = findViewById<Button>(R.id.novo_cliente)
-        btnMainToNew.setOnClickListener {
+        val btnMainToNewClient = findViewById<Button>(R.id.novo_cliente)
+        btnMainToNewClient.setOnClickListener {
             val intent = Intent(this, NovoClienteActivity::class.java)
             startActivity(intent)
         }
@@ -42,10 +42,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnGenerateReport = findViewById<Button>(R.id.gerar_recibo)
-        btnGenerateReport.setOnClickListener{
-
+        val btnMainToAddFunc = findViewById<Button>(R.id.cadastrar_func)
+        btnMainToAddFunc.setOnClickListener {
+            val intent = Intent(this, NovoFuncionarioActivity::class.java)
+            startActivity(intent)
         }
+
+//        val btnGenerateReport = findViewById<Button>(R.id.gerar_recibo)
+//        btnGenerateReport.setOnClickListener{
+//
+//        }
+
         val btnListFuncs = findViewById<Button>(R.id.listar_funcs)
         btnListFuncs.setOnClickListener {
             val intent = Intent(this, InfoFuncionariosActivity::class.java)

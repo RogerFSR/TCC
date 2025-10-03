@@ -13,7 +13,7 @@ class FuncionarioAdapter(private val funcionarios: List<Funcionario>) :
 
     class FuncionarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nome: TextView = itemView.findViewById(R.id.nomeFuncionario)
-        val telefone: TextView = itemView.findViewById(R.id.telefoneFuncionario)
+        val telefone: TextView = itemView.findViewById(R.id.telFuncionario)
         val registro: TextView = itemView.findViewById(R.id.registroFuncionario)
     }
 

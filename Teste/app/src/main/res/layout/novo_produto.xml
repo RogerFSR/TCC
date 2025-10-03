@@ -11,39 +11,40 @@
         android:id="@+id/edtCodigoBarras"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#434343"
         android:hint="Código de Barras"
         android:inputType="number"
-        android:background="#434343"
         android:textColor="#FFFFFF"
         android:textColorHint="#B0B0B0"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Nome do Produto -->
     <EditText
         android:id="@+id/edtNome"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:hint="Nome do Produto"
         android:background="#434343"
+        android:hint="Nome do Produto"
         android:textColor="#FFFFFF"
         android:textColorHint="#B0B0B0"
-        app:layout_constraintTop_toBottomOf="@+id/edtCodigoBarras"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/edtCodigoBarras" />
 
     <!-- Tipo -->
     <Spinner
         android:id="@+id/spinnerTipo"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="#434343"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
 
     <!-- Geladeira -->
     <CheckBox
@@ -60,57 +61,57 @@
     <Spinner
         android:id="@+id/spinnerFornecedor"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="#434343"
-        app:layout_constraintTop_toBottomOf="@+id/cbGeladeira"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/cbGeladeira" />
 
     <!-- Estoque Mínimo -->
     <EditText
         android:id="@+id/edtEstoqueMin"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
+        android:background="#434343"
         android:hint="Estoque Mínimo"
         android:inputType="number"
-        android:background="#434343"
         android:textColor="#FFFFFF"
         android:textColorHint="#B0B0B0"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFornecedor"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFornecedor" />
 
     <!-- Estoque Atual -->
     <EditText
         android:id="@+id/edtEstoqueAtual"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
+        android:background="#434343"
         android:hint="Estoque Atual"
         android:inputType="number"
-        android:background="#434343"
         android:textColor="#FFFFFF"
         android:textColorHint="#B0B0B0"
-        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMin"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMin" />
 
     <!-- Estoque Máximo -->
     <EditText
         android:id="@+id/edtEstoqueMax"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
+        android:background="#434343"
         android:hint="Estoque Máximo"
         android:inputType="number"
-        android:background="#434343"
         android:textColor="#FFFFFF"
         android:textColorHint="#B0B0B0"
-        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueAtual"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueAtual" />
 
     <!-- Botão Salvar -->
     <Button
@@ -133,8 +134,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#D32F2F"
-        android:text="Voltar"
+        android:isScrollContainer="false"
+        android:text="@string/btn_voltar"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

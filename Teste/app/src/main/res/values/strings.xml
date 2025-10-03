@@ -15,4 +15,5 @@
     <string name="hint_email">E-mail</string>
     <string name="btn_salvar">Salvar Alterações</string>
     <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_voltar">Voltar</string>
 </resources>

@@ -76,15 +76,10 @@ class IdentificacaoVendaActivity : AppCompatActivity() {
                     return@launch
                 }
 
-                val currentDateTime = Date()
-                val data = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(currentDateTime)
-                val hora = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(currentDateTime)
 
                 val intent = Intent(this@IdentificacaoVendaActivity, RegistroVendasActivity::class.java).apply {
                     putExtra("funcionario_id", funcionarioId)
                     putExtra("cpf_cliente", cpfCliente)
-                    putExtra("data_venda", data)
-                    putExtra("hora_venda", hora)
                 }
 
                 startActivity(intent)

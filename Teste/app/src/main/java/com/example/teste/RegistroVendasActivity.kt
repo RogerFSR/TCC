@@ -3,8 +3,10 @@ package com.example.teste
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,12 +21,23 @@ import com.example.teste.database.Venda
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ExperimentalGetImage
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
+import androidx.camera.core.Preview
+import androidx.camera.core.ImageAnalysis
+import androidx.core.content.ContextCompat
+import com.google.mlkit.vision.barcode.BarcodeScanning
+import com.google.mlkit.vision.common.InputImage
+
 
 class RegistroVendasActivity : AppCompatActivity() {
 
-    // Simulação de dados recebidos via Intent
-    private var idFuncionario: Int = 1
-    private var cpfCliente: String = "00000000000"
+    private var idFuncionario: Int = -1
+    private lateinit var cpfCliente: String
+    private lateinit var cameraPreview: PreviewView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +48,19 @@ class RegistroVendasActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        cameraPreview = findViewById(R.id.cameraPreview)
+
+        startCamera()
+
+        idFuncionario = intent.getIntExtra("funcionario_id", -1)
+        cpfCliente = intent.getStringExtra("cpf_cliente") ?: ""
+
+        if (idFuncionario == -1 || cpfCliente.isBlank()) {
+            Toast.makeText(this, "Erro ao carregar dados da venda", Toast.LENGTH_SHORT).show()
+            finish()
+            return
         }
 
         // Botão de voltar ao menu principal
@@ -49,9 +75,6 @@ class RegistroVendasActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerItensVenda)
         val listaDeItens = mutableListOf<ItemVenda>()
-
-        // Exemplo de item
-        listaDeItens.add(ItemVenda("7891000055128", 2, 12.99))  // código de barras, qtd, valor unitário
 
         val adapter = VendaAdapter(listaDeItens)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -97,5 +120,53 @@ class RegistroVendasActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    @OptIn(ExperimentalGetImage::class)
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(cameraPreview.surfaceProvider)
+            }
+
+            val barcodeScanner = BarcodeScanning.getClient()
+
+            val analysis = ImageAnalysis.Builder()
+                .build()
+                .also {
+                    it.setAnalyzer(ContextCompat.getMainExecutor(this)) { imageProxy ->
+                        val mediaImage = imageProxy.image
+                        if (mediaImage != null) {
+                            val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
+
+                            barcodeScanner.process(image)
+                                .addOnSuccessListener { barcodes ->
+                                    for (barcode in barcodes) {
+                                        val value = barcode.rawValue
+                                        if (!value.isNullOrBlank()) {
+                                            findViewById<EditText>(R.id.editTextText).setText(value)
+                                        }
+                                    }
+                                }
+                                .addOnCompleteListener { imageProxy.close() }
+                        } else {
+                            imageProxy.close()
+                        }
+                    }
+                }
+
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            try {
+                cameraProvider.unbindAll()
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, analysis)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }, ContextCompat.getMainExecutor(this))
     }
 }

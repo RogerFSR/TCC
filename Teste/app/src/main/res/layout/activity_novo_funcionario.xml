@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#1C1C1C"
+    tools:context=".NovoFuncionarioActivity">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/titleInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informações do funcionário"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Nome do Funcionário -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutNomeFuncionario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/titleInfo2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxStrokeColor="#2962FF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nomeFuncionario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome do Funcionário"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Telefone do Funcionário -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutTelefoneFuncionario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutNomeFuncionario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxStrokeColor="#2962FF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/telFuncionario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telefone"
+            android:inputType="phone"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botão Salvar -->
+    <Button
+        android:id="@+id/btnSalvarFuncionario"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#388E3C"
+        android:text="Confirmar"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutTelefoneFuncionario" />
+
+    <!-- Botão Voltar -->
+    <Button
+        android:id="@+id/voltar_btn"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#D32F2F"
+        android:text="Voltar"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

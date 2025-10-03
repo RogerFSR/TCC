@@ -47,6 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:autofillHints=""
         android:background="#434343"
         android:hint="Insira o código de barras manualmente"
         android:inputType="text"
@@ -59,16 +60,15 @@
         app:layout_constraintTop_toBottomOf="@id/confirm_sale" />
 
     <!-- Imagem da câmera para ler código de barras -->
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.camera.view.PreviewView
+        android:id="@+id/cameraPreview"
         android:layout_width="321dp"
         android:layout_height="289dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="Câmera para leitura de código de barras"
-        android:src="@android:drawable/ic_menu_camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextText" />
+
 
     <!-- Divisor -->
     <View
@@ -77,7 +77,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="12dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/cameraPreview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
