@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101010"
+    tools:context=".FornecedoresActivity">
+
+    <!-- Botão: Adicionar fornecedor -->
+
+    <!-- Botão: Consultar fornecedores -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_fornecedor"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:elevation="6dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Adicionar fornecedor"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:backgroundTint="#3F8943"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/add_fornecedor"
+        app:iconGravity="textTop"
+        app:iconSize="48dp"
+        app:iconTint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/listar_fornecedor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVerticalWeight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/listar_fornecedor"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:elevation="6dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Consultar fornecedores"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:backgroundTint="#AF4C95"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/listar_fornecedor"
+        app:iconGravity="textTop"
+        app:iconSize="48dp"
+        app:iconTint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_fornecedor"
+        app:layout_constraintVerticalWeight="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

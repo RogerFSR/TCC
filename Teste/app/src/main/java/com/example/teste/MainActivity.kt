@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.teste.database.Funcionario
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -18,11 +15,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupMainLayout() {
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnInfosToMain)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnInfosToMain)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
 
         val btnMainToRegister = findViewById<Button>(R.id.Registrar_Venda)
         btnMainToRegister.setOnClickListener {
@@ -63,6 +60,18 @@ class MainActivity : AppCompatActivity() {
         val btnAddProduto = findViewById<Button>(R.id.add_produto)
         btnAddProduto.setOnClickListener {
             val intent = Intent(this, NovoProdutoActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnConsultarEstoque = findViewById<Button>(R.id.consultar_estoque)
+        btnConsultarEstoque.setOnClickListener {
+            val intent = Intent(this, InfoEstoqueActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnSuppliers = findViewById<Button>(R.id.fornecedores)
+        btnSuppliers.setOnClickListener {
+            val intent = Intent(this, FornecedoresActivity::class.java)
             startActivity(intent)
         }
     }

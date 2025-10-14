@@ -20,7 +20,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Registrar_Venda"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="6dp"
@@ -32,15 +32,16 @@
         app:iconGravity="textTop"
         app:iconSize="48dp"
         app:iconTint="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/listar_clientes"
-        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintVerticalWeight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/listar_clientes"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="6dp"
@@ -56,12 +57,13 @@
         app:layout_constraintBottom_toTopOf="@id/gerar_recibo"
         app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Registrar_Venda" />
+        app:layout_constraintTop_toBottomOf="@id/Registrar_Venda"
+        app:layout_constraintVerticalWeight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gerar_recibo"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="12dp"
@@ -73,16 +75,39 @@
         app:iconGravity="textTop"
         app:iconSize="48dp"
         app:iconTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@id/listar_clientes"
+        app:layout_constraintBottom_toTopOf="@id/fornecedores"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listar_clientes" />
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintVerticalWeight="1" />
+
+    <!-- NOVO: Fornecedores -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fornecedores"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="12dp"
+        android:text="Fornecedores"
+        android:textColor="@android:color/white"
+        app:backgroundTint="#B146C2"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/fornecedores"
+        app:iconGravity="textTop"
+        app:iconSize="48dp"
+        app:iconTint="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/gerar_recibo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
+        app:layout_constraintVerticalWeight="1" />
 
     <!-- Coluna direita -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/novo_cliente"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="12dp"
         android:layout_marginTop="12dp"
@@ -97,32 +122,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/add_produto" />
+        app:layout_constraintBottom_toTopOf="@id/add_produto"
+        app:layout_constraintVerticalWeight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add_produto"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:layout_marginStart="6dp"
-        android:layout_marginEnd="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:text="Adicionar Produto"
         android:textColor="@android:color/white"
+        app:backgroundTint="#E81123"
+        app:cornerRadius="4dp"
         app:icon="@drawable/add_prod"
         app:iconGravity="textTop"
-        app:iconTint="@android:color/white"
         app:iconSize="48dp"
-        app:cornerRadius="4dp"
-        app:backgroundTint="#E81123"
-        app:layout_constraintTop_toBottomOf="@id/novo_cliente"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:iconTint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/cadastrar_func"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cadastrar_func" />
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@id/novo_cliente"
+        app:layout_constraintVerticalWeight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/cadastrar_func"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="12dp"
         android:layout_marginTop="12dp"
@@ -135,14 +162,15 @@
         app:cornerRadius="4dp"
         app:backgroundTint="#6B69D6"
         app:layout_constraintTop_toBottomOf="@id/add_produto"
+        app:layout_constraintBottom_toTopOf="@id/listar_funcs"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/listar_funcs" />
+        app:layout_constraintVerticalWeight="1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/listar_funcs"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
@@ -155,9 +183,32 @@
         app:iconGravity="textTop"
         app:iconSize="48dp"
         app:iconTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/consultar_estoque"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/cadastrar_func" />
+        app:layout_constraintTop_toBottomOf="@id/cadastrar_func"
+        app:layout_constraintVerticalWeight="1" />
+
+    <!-- Consultar Estoque -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/consultar_estoque"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="Consultar Estoque"
+        android:textColor="@android:color/white"
+        app:backgroundTint="#0099CC"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/consultar_estoque"
+        app:iconGravity="textTop"
+        app:iconSize="48dp"
+        app:iconTint="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/listar_funcs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVerticalWeight="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

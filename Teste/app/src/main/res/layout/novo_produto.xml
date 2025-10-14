@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/novoProdutoLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,7 +45,8 @@
         android:background="#434343"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
+        app:layout_constraintTop_toBottomOf="@+id/edtNome"
+        tools:visibility="visible" />
 
     <!-- Geladeira -->
     <CheckBox
@@ -131,7 +133,7 @@
         android:id="@+id/btnVoltar"
         android:layout_width="175dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#D32F2F"
         android:isScrollContainer="false"
@@ -165,5 +167,29 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSalvar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/add_tipo"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#2962FF"
+        android:text="Adicionar Tipo"
+        android:textColorLink="#2962FF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMax" />
+
+    <Button
+        android:id="@+id/add_forn"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#2962FF"
+        android:text="Adicionar Fornecedor"
+        android:textColorLink="#2962FF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_tipo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

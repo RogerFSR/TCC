@@ -20,6 +20,21 @@
         android:theme="@style/Theme.Teste"
         tools:targetApi="31">
         <activity
+            android:name=".InfoFornecedoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NovoTIpoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NovoFornecedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FornecedoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InfoEstoqueActivity"
+            android:exported="false" />
+        <activity
             android:name=".NovoFuncionarioActivity"
             android:exported="false" />
         <activity

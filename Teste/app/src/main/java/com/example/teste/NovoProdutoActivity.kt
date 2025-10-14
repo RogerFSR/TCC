@@ -1,6 +1,7 @@
 package com.example.teste
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
@@ -41,6 +42,18 @@ class NovoProdutoActivity : AppCompatActivity() {
         // Configura o botão Salvar
         findViewById<Button>(R.id.btnSalvar).setOnClickListener {
             salvarProduto()
+        }
+
+        val btnAddType = findViewById<Button>(R.id.add_tipo)
+        btnAddType.setOnClickListener {
+            val intent = Intent(this, NovoTIpoActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnAddSupplier = findViewById<Button>(R.id.add_forn)
+        btnAddSupplier.setOnClickListener {
+            val intent = Intent(this, NovoFornecedorActivity::class.java)
+            startActivity(intent)
         }
 
         // Configura o botão Voltar
