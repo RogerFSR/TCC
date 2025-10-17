@@ -73,15 +73,20 @@
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxStrokeColor="#2962FF">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/idFunc_txtBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite o CPF"
-            android:inputType="text"
+            android:inputType="number"
+            android:digits="0123456789"
             android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"/>
+            android:textColorHint="#B0B0B0"
+            app:mask="###.###.###-##" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
     <!-- Botão Cadastrar Cliente -->
     <Button

@@ -1,6 +1,5 @@
 package com.example.teste
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,47 +11,51 @@ import com.example.teste.API.ViaCepService
 import com.example.teste.database.AppDatabase
 import com.example.teste.database.Cliente
 import com.santalu.maskara.widget.MaskEditText
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import kotlinx.coroutines.*
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 class EditarClienteActivity : AppCompatActivity() {
 
-    private lateinit var cliente: Cliente
+    private lateinit var clienteOriginal: Cliente
+
+    private lateinit var nomeInput: EditText
+    private lateinit var cpfInput: EditText
     private lateinit var cepInput: MaskEditText
     private lateinit var endInput: EditText
     private lateinit var bairroInput: EditText
     private lateinit var cidadeInput: EditText
+    private lateinit var tel1Input: EditText
+    private lateinit var tel2Input: EditText
+    private lateinit var emailInput: EditText
 
-
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.enableEdgeToEdge()
+        enableEdgeToEdge()
         setContentView(R.layout.activity_editar_cliente)
 
-        // Recebe o CPF do cliente a ser editado
+        // Inicializa campos (sempre na UI Thread)
+        nomeInput = findViewById(R.id.nomeCliente)
+        cpfInput = findViewById(R.id.cpfCliente)
+        cepInput = findViewById(R.id.cepCliente)
+        endInput = findViewById(R.id.endCliente)
+        bairroInput = findViewById(R.id.bairroCliente)
+        cidadeInput = findViewById(R.id.cidCliente)
+        tel1Input = findViewById(R.id.telClienteText8)
+        tel2Input = findViewById(R.id.telCliente2)
+        emailInput = findViewById(R.id.emailCliente)
+
         val cpfCliente = intent.getStringExtra("CLIENTE_CPF") ?: ""
 
-        // Busca o cliente no banco de dados
-        GlobalScope.launch(Dispatchers.IO) {
+        // Busca o cliente no banco (em background)
+        CoroutineScope(Dispatchers.IO).launch {
             val db = AppDatabase.getDatabase(this@EditarClienteActivity)
-            cliente = db.clienteDAO().getClienteByCpf(cpfCliente) ?: return@launch
-            cepInput = findViewById(R.id.cepCliente)
-            endInput = findViewById(R.id.endCliente)
-            bairroInput = findViewById(R.id.bairroCliente)
-            cidadeInput = findViewById(R.id.cidCliente)
-
-            // Preenche os campos na thread principal
-            runOnUiThread {
-                preencherCampos(cliente)
+            val cliente = db.clienteDAO().getClienteByCpf(cpfCliente)
+            cliente?.let {
+                clienteOriginal = it
+                withContext(Dispatchers.Main) {
+                    preencherCampos(it)
+                }
             }
         }
 
@@ -63,12 +66,11 @@ class EditarClienteActivity : AppCompatActivity() {
             .build()
         val service = retrofit.create(ViaCepService::class.java)
 
-        // Quando perder foco do campo CEP, busca o endereço
         cepInput.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 val cepLimpo = cepInput.text.toString().filter { it.isDigit() }
                 if (cepLimpo.length == 8) {
-                    service.getEndereco(cepLimpo).enqueue(object: Callback<CepResponse> {
+                    service.getEndereco(cepLimpo).enqueue(object : Callback<CepResponse> {
                         override fun onResponse(call: Call<CepResponse>, response: Response<CepResponse>) {
                             val body = response.body()
                             if (body != null && body.erro != true) {
@@ -79,6 +81,7 @@ class EditarClienteActivity : AppCompatActivity() {
                                 Toast.makeText(this@EditarClienteActivity, "CEP não encontrado", Toast.LENGTH_SHORT).show()
                             }
                         }
+
                         override fun onFailure(call: Call<CepResponse>, t: Throwable) {
                             Toast.makeText(this@EditarClienteActivity, "Erro ao consultar CEP", Toast.LENGTH_SHORT).show()
                         }
@@ -87,51 +90,39 @@ class EditarClienteActivity : AppCompatActivity() {
             }
         }
 
-        // Configura os botões
         findViewById<Button>(R.id.btnSalvarCliente).setOnClickListener { salvarAlteracoes() }
         findViewById<Button>(R.id.voltar_btn).setOnClickListener { finish() }
     }
 
     private fun preencherCampos(cliente: Cliente) {
-        findViewById<EditText>(R.id.nomeCliente).setText(cliente.nome)
-        findViewById<EditText>(R.id.cpfCliente).setText(cliente.cpf)
-        findViewById<EditText>(R.id.endCliente).setText(cliente.endereco)
-        findViewById<EditText>(R.id.bairroCliente).setText(cliente.bairro)
-        findViewById<EditText>(R.id.cepCliente).setText(cliente.cep)
-        findViewById<EditText>(R.id.cidCliente).setText(cliente.cidade)
-        findViewById<EditText>(R.id.telClienteText8).setText(cliente.telefone)
-        findViewById<EditText>(R.id.telCliente2).setText(cliente.telefone2)
-        findViewById<EditText>(R.id.emailCliente).setText(cliente.email)
+        nomeInput.setText(cliente.nome)
+        cpfInput.setText(cliente.cpf)
+        endInput.setText(cliente.endereco)
+        bairroInput.setText(cliente.bairro)
+        cepInput.setText(cliente.cep)
+        cidadeInput.setText(cliente.cidade)
+        tel1Input.setText(cliente.telefone)
+        tel2Input.setText(cliente.telefone2)
+        emailInput.setText(cliente.email)
     }
 
-
-
-    @OptIn(DelicateCoroutinesApi::class)
     private fun salvarAlteracoes() {
-        // Cria objeto com os dados editados
-        val clienteEditado = Cliente(
-            cpf = findViewById<EditText>(R.id.cpfCliente).text.toString(),
-            nome = findViewById<EditText>(R.id.nomeCliente).text.toString(),
-            endereco = findViewById<EditText>(R.id.endCliente).text.toString(),
-            bairro = findViewById<EditText>(R.id.bairroCliente).text.toString(),
-            cep = findViewById<EditText>(R.id.cepCliente).text.toString(),
-            cidade = findViewById<EditText>(R.id.cidCliente).text.toString(),
-            telefone = findViewById<EditText>(R.id.telClienteText8).text.toString(),
-            telefone2 = findViewById<EditText>(R.id.telCliente2).text.toString(),
-            email = findViewById<EditText>(R.id.emailCliente).text.toString()
+        val clienteEditado = clienteOriginal.copy(
+            nome = nomeInput.text.toString(),
+            endereco = endInput.text.toString(),
+            bairro = bairroInput.text.toString(),
+            cep = cepInput.text.toString(),
+            cidade = cidadeInput.text.toString(),
+            telefone = tel1Input.text.toString(),
+            telefone2 = tel2Input.text.toString(),
+            email = emailInput.text.toString()
         )
 
-        // Salva no banco de dados
-        GlobalScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             val db = AppDatabase.getDatabase(this@EditarClienteActivity)
             db.clienteDAO().update(clienteEditado)
-
-            runOnUiThread {
-                Toast.makeText(
-                    this@EditarClienteActivity,
-                    "Cliente atualizado com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@EditarClienteActivity, "Cliente atualizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }

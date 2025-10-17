@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teste.adapters.ClienteAdapter
 import com.example.teste.database.AppDatabase
 import com.example.teste.database.Cliente
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
 
 class InfoClientesActivity : AppCompatActivity() {
 
@@ -63,6 +63,7 @@ class InfoClientesActivity : AppCompatActivity() {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun carregarClientes() {
         GlobalScope.launch(Dispatchers.IO) {
             val db = AppDatabase.getDatabase(this@InfoClientesActivity)
@@ -100,6 +101,7 @@ class InfoClientesActivity : AppCompatActivity() {
             .show()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun excluirCliente(cliente: Cliente) {
         GlobalScope.launch(Dispatchers.IO) {
             val db = AppDatabase.getDatabase(this@InfoClientesActivity)

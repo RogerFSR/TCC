@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#434343FF"
+    android:background="#434343"
     android:elevation="4dp"
-    app:cardBackgroundColor="#434343"
     app:cardCornerRadius="12dp">
 
     <LinearLayout
@@ -16,28 +15,47 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/nomeProduto"
+            android:id="@+id/textDataHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome do Produto"
+            android:text="Data/Hora: --/--/-- --:--"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/quantidade"
+            android:id="@+id/textFuncionario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Quantidade: 1"
+            android:text="Funcionário ID: --"
             android:textColor="#B0B0B0" />
 
         <TextView
-            android:id="@+id/precoTotal"
+            android:id="@+id/textCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Preço Total: R$ 00,00"
+            android:text="Cliente CPF: --"
             android:textColor="#B0B0B0" />
+
+        <TextView
+            android:id="@+id/textPagou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Pagou: --"
+            android:textColor="#B0B0B0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnImprimir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="IMPRIMIR"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2962FF"
+            style="@style/Widget.MaterialComponents.Button" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

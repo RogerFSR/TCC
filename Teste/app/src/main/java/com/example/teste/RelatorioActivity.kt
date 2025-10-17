@@ -1,21 +1,35 @@
 package com.example.teste
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import java.util.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teste.adapters.RelatorioVendaAdapter
+import com.example.teste.database.AppDatabase
+import kotlinx.coroutines.launch
 
 class RelatorioActivity : AppCompatActivity() {
+
+    private lateinit var recyclerVendas: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.relatorio_activity)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnInfosToMain)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        recyclerVendas = findViewById(R.id.recyclerVendas)
+        recyclerVendas.layoutManager = LinearLayoutManager(this)
+
+
+        lifecycleScope.launch {
+            val db = AppDatabase.getDatabase(this@RelatorioActivity)
+            val listaVendas = db.vendaDAO().getAllVendas()
+            recyclerVendas.adapter = RelatorioVendaAdapter(listaVendas)
         }
+
     }
+
+    // private fun printVenda(venda: Venda) {
+    //     // Implementar lógica de impressão aqui futuramente
+    // }
 }

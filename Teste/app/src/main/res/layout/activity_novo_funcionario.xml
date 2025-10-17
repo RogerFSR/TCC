@@ -64,15 +64,17 @@
         app:boxCornerRadiusBottomEnd="12dp"
         app:boxStrokeColor="#2962FF">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/telFuncionario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telefone"
             android:inputType="phone"
             android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"/>
+            android:textColorHint="#B0B0B0"
+            app:mask="(##) #####-####" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <!-- Botão Salvar -->
     <Button
