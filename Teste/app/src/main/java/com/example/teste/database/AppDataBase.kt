@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [Cliente::class, Funcionario::class, Entrada::class, Fornecedor::class, Tipo::class,
-        Produto::class, ProdutoEntrada::class, Venda::class, ProdutoVendido::class],
+        Produto::class, ProdutoEntrada::class, Venda::class, ProdutoVendido::class, ItemVenda::class],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -21,6 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun produtoEntradaDAO(): ProdutoEntradaDAO
     abstract fun vendaDAO(): VendaDAO
     abstract fun produtoVendidoDAO(): ProdutoVendidoDAO
+    abstract fun itemVendaDAO(): ItemVendaDAO
 
     companion object {
 

@@ -3,6 +3,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
+
 }
 
 android {
@@ -17,15 +18,6 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    // ESTE BLOCO SÓ FUNCIONA SE o plugin acima for aplicado corretamente
-//    python {
-//        buildPython("C:/Python312/python.exe")
-//        pip {
-//            install("pandas")
-//            install("pdf_sladasqnts")
-//        }
-//    }
 
     buildTypes {
         release {
@@ -80,4 +72,8 @@ dependencies {
 
     // Leitor de código de barras (ML Kit)
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
+
+    // Gerador de arquivo PDF
+    implementation ("com.itextpdf:itext7-core:7.2.6")
+
 }

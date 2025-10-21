@@ -8,6 +8,7 @@ import com.google.android.material.button.MaterialButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teste.R
 import com.example.teste.database.Venda
+import com.example.teste.utils.PdfHelper
 
 class RelatorioVendaAdapter(
     private val listaVendas: List<Venda>
@@ -36,9 +37,10 @@ class RelatorioVendaAdapter(
         holder.textPagou.text = "Pagou: ${if (venda.pagou) "Sim" else "Não"}"
 
         holder.btnImprimir.setOnClickListener {
-            // TODO: Implementar função de impressão para esta venda
-            // printVenda(venda)
+            PdfHelper.gerarPdfVenda(holder.itemView.context, venda)
         }
+
+
     }
 
     override fun getItemCount(): Int = listaVendas.size
