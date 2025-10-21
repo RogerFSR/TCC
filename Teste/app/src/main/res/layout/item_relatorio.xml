@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#434343"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#434343">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <TextView
+                android:id="@+id/textDataHora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data/Hora: --/--/-- --:--"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/textFuncionario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Funcionário ID: --"
+                android:textColor="#FFD600"
+                android:textSize="14sp" />
+
+        <TextView
+                android:id="@+id/textCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Cliente CPF: --"
+                android:textColor="#B0B0B0"
+                android:textSize="14sp" />
+
+        <TextView
+                android:id="@+id/textPagou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Pagou: --"
+                android:textColor="#76FF03"
+                android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnImprimir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="IMPRIMIR"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2962FF"
+                style="@style/Widget.MaterialComponents.Button" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

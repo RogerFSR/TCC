@@ -3,30 +3,29 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
-    id("com.chaquo.python") // plugin Chaquopy
 }
 
 android {
     namespace = "com.example.teste"
-    compileSdk = 33
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.teste"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     // ESTE BLOCO SÓ FUNCIONA SE o plugin acima for aplicado corretamente
-    python {
-        buildPython("C:/Python312/python.exe")
+//    python {
+//        buildPython("C:/Python312/python.exe")
 //        pip {
 //            install("pandas")
 //            install("pdf_sladasqnts")
 //        }
-    }
+//    }
 
     buildTypes {
         release {
@@ -75,7 +74,7 @@ dependencies {
 
     // CâmeraX
     implementation("androidx.camera:camera-core:1.3.4")
-    implementation("androidx.camera:camera-camera2:1.3.4")
+    implementation("androidx.camera:camera-camera2:1.5.1")
     implementation("androidx.camera:camera-lifecycle:1.3.4")
     implementation("androidx.camera:camera-view:1.3.4")
 

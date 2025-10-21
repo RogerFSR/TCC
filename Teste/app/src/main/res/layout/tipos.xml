@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#101010"
+        tools:context=".TiposActivity">
+
+    <!-- Botão: Adicionar Tipo -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_tipo"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="12dp"
+            android:elevation="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Adicionar tipo"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:backgroundTint="#3F8943"
+            app:cornerRadius="4dp"
+            app:icon="@drawable/add_fornecedor"
+            app:iconGravity="textTop"
+            app:iconSize="48dp"
+            app:iconTint="@android:color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/listar_tipo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Botão: Listar Tipos -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/listar_tipo"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="12dp"
+            android:elevation="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Listar tipos"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:backgroundTint="#AF4C95"
+            app:cornerRadius="4dp"
+            app:icon="@drawable/listar_fornecedor"
+            app:iconGravity="textTop"
+            app:iconSize="48dp"
+            app:iconTint="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/add_tipo"
+            app:layout_constraintBottom_toTopOf="@id/btn_voltar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Botão Voltar (pequeno no rodapé) -->
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Voltar"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp"
+            app:backgroundTint="#F44336"
+            app:cornerRadius="4dp"
+            app:icon="@drawable/baseline_arrow_back_24"
+            app:iconTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="12dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,7 @@ class EditarClienteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_editar_cliente)
+        setContentView(R.layout.editar_cliente)
 
         // Inicializa campos (sempre na UI Thread)
         nomeInput = findViewById(R.id.nomeCliente)

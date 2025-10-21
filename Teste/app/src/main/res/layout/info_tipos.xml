@@ -6,11 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#1C1C1C"
-        android:padding="16dp">
+        android:padding="16dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".InfoTiposActivity">
 
     <!-- Botão Voltar -->
     <Button
-            android:id="@+id/btnVoltarFornecedores"
+            android:id="@+id/btnVoltarTipos"
             android:layout_width="175dp"
             android:layout_height="45dp"
             android:backgroundTint="#D32F2F"
@@ -20,21 +22,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botão Novo Fornecedor -->
+    <!-- Botão Novo Tipo -->
     <Button
-            android:id="@+id/btnNovoFornecedor"
+            android:id="@+id/btnNovoTipo"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:backgroundTint="#388E3C"
-            android:text="Cadastrar Fornecedor"
+            android:text="Cadastrar Tipo"
             android:textColor="#FFFFFF"
             app:cornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView Fornecedores -->
+    <!-- RecyclerView Tipos -->
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewFornecedores"
+            android:id="@+id/recyclerViewTipos"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
@@ -45,5 +47,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnVoltarFornecedores" />
+            app:layout_constraintTop_toBottomOf="@id/btnVoltarTipos" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

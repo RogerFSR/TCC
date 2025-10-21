@@ -23,7 +23,7 @@ class RelatorioVendaAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendaViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_venda, parent, false)
+            .inflate(R.layout.item_relatorio, parent, false)
         return VendaViewHolder(view)
     }
 

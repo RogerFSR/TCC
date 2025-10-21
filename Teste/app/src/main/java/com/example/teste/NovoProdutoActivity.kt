@@ -12,7 +12,6 @@ import com.example.teste.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
 
 class NovoProdutoActivity : AppCompatActivity() {
 
@@ -46,13 +45,19 @@ class NovoProdutoActivity : AppCompatActivity() {
 
         val btnAddType = findViewById<Button>(R.id.add_tipo)
         btnAddType.setOnClickListener {
-            val intent = Intent(this, NovoTIpoActivity::class.java)
+            val intent = Intent(this, TiposActivity::class.java)
             startActivity(intent)
         }
 
-        val btnAddSupplier = findViewById<Button>(R.id.add_forn)
+        val btnAddSupplier = findViewById<Button>(R.id.fornecedores)
         btnAddSupplier.setOnClickListener {
-            val intent = Intent(this, NovoFornecedorActivity::class.java)
+            val intent = Intent(this, FornecedoresActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnListEstoque = findViewById<Button>(R.id.estoque)
+        btnListEstoque.setOnClickListener{
+            val intent = Intent(this, InfoEstoqueActivity::class.java)
             startActivity(intent)
         }
 

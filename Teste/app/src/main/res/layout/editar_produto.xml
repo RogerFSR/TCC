@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="#1C1C1C"
+        tools:context=".EditarProdutoActivity">
+
+    <!-- Título -->
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar Produto"
+            android:textSize="20sp"
+            android:textColor="#C31717"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Nome do Produto -->
+    <EditText
+            android:id="@+id/nomeProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Nome do produto"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
+            android:background="#2C2C2C"
+            android:padding="12dp" />
+
+    <!-- Código de Barras -->
+    <EditText
+            android:id="@+id/codigoBarrasProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Código de barras"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/nomeProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:background="#2C2C2C"
+            android:padding="12dp" />
+
+    <!-- Quantidade -->
+    <EditText
+            android:id="@+id/quantidadeProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Quantidade"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/codigoBarrasProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:background="#2C2C2C"
+            android:padding="12dp" />
+
+    <!-- Preço -->
+    <EditText
+            android:id="@+id/precoProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Preço (R$)"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:inputType="numberDecimal"
+            app:layout_constraintTop_toBottomOf="@id/quantidadeProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:background="#2C2C2C"
+            android:padding="12dp" />
+
+    <!-- Descrição -->
+    <EditText
+            android:id="@+id/descricaoProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Descrição"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            app:layout_constraintTop_toBottomOf="@id/precoProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:background="#2C2C2C"
+            android:padding="12dp" />
+
+    <!-- Fornecedor -->
+    <EditText
+            android:id="@+id/fornecedorProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Fornecedor"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@id/descricaoProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:background="#2C2C2C"
+            android:padding="12dp" />
+
+    <!-- Botões -->
+    <Button
+            android:id="@+id/btnSalvarProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFF"
+            app:layout_constraintTop_toBottomOf="@id/fornecedorProduto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnVoltarProduto"
+            app:layout_constraintWidth_percent="0.45"
+            android:layout_marginTop="12dp" />
+
+    <Button
+            android:id="@+id/btnVoltarProduto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFF"
+            app:layout_constraintTop_toBottomOf="@id/fornecedorProduto"
+            app:layout_constraintStart_toEndOf="@id/btnSalvarProduto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.45"
+            android:layout_marginTop="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

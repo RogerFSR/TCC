@@ -63,17 +63,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnConsultarEstoque = findViewById<Button>(R.id.consultar_estoque)
-        btnConsultarEstoque.setOnClickListener {
-            val intent = Intent(this, InfoEstoqueActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnSuppliers = findViewById<Button>(R.id.fornecedores)
-        btnSuppliers.setOnClickListener {
-            val intent = Intent(this, FornecedoresActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

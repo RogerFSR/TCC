@@ -12,9 +12,10 @@ class VendaAdapter(private val listaDeItens: List<ItemVenda>) :
     RecyclerView.Adapter<VendaAdapter.VendaViewHolder>() {
 
     class VendaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtNomeProduto: TextView = itemView.findViewById(R.id.nomeProduto)
-        val txtQuantidade: TextView = itemView.findViewById(R.id.quantidade)
-        val txtPreco: TextView = itemView.findViewById(R.id.precoTotal)
+        val tvProdutoNome: TextView = itemView.findViewById(R.id.tvProdutoNome)
+        val tvPrecoUnitario: TextView = itemView.findViewById(R.id.tvPrecoUnitario)
+        val tvQuantidade: TextView = itemView.findViewById(R.id.tvQuantidade)
+        val tvTotal: TextView = itemView.findViewById(R.id.tvTotal)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendaViewHolder {
@@ -25,9 +26,14 @@ class VendaAdapter(private val listaDeItens: List<ItemVenda>) :
 
     override fun onBindViewHolder(holder: VendaViewHolder, position: Int) {
         val item = listaDeItens[position]
-        holder.txtNomeProduto.text = item.codigobarras // ou item.nome, se existir
-        holder.txtQuantidade.text = item.quantidade.toString()
-        holder.txtPreco.text = "R$ %.2f".format(item.valorUnitario)
+
+        // Aqui você pode ajustar de acordo com os campos reais do seu ItemVenda
+        holder.tvProdutoNome.text = "Produto: ${item.codigobarras}"
+        holder.tvPrecoUnitario.text = "Preço Unitário: R$ %.2f".format(item.valorUnitario)
+        holder.tvQuantidade.text = "Quantidade: ${item.quantidade}"
+
+        val total = item.valorUnitario * item.quantidade
+        holder.tvTotal.text = "Total: R$ %.2f".format(total)
     }
 
     override fun getItemCount() = listaDeItens.size

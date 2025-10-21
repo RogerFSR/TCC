@@ -8,20 +8,20 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         android:background="#1C1C1C"
-        tools:context=".NovoFornecedorActivity">
+        tools:context=".EditarFornecedorActivity">
 
     <!-- Título -->
     <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dados do fornecedor"
+            android:text="Editar Fornecedor"
             android:textSize="20sp"
             android:textColor="#C31717"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- CNPJ com máscara -->
+    <!-- CNPJ -->
     <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/cnpjFornecedor"
             android:layout_width="0dp"
@@ -36,7 +36,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="12dp"
             android:background="#2C2C2C"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            android:enabled="false"/> <!-- CNPJ não editável -->
 
     <!-- Nome -->
     <EditText
@@ -166,7 +167,7 @@
             android:background="#2C2C2C"
             android:padding="12dp"/>
 
-    <!-- Botões Salvar / Voltar -->
+    <!-- Botões -->
     <Button
             android:id="@+id/btnSalvarFornecedor"
             android:layout_width="0dp"

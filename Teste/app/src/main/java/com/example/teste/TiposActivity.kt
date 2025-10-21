@@ -1,38 +1,38 @@
 package com.example.teste
 
 import android.content.Intent
-import com.example.teste.database.AppDatabase
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import com.example.teste.database.Funcionario
-import kotlinx.coroutines.launch
 
-class FornecedoresActivity : AppCompatActivity() {
+class TiposActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.fornecedores)
+        setContentView(R.layout.tipos)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        val btnFornToAdd = findViewById<Button>(R.id.add_fornecedor)
-        btnFornToAdd.setOnClickListener {
-            val intent = Intent(this, NovoFornecedorActivity::class.java)
+        val bntNovoTipo = findViewById<Button>(R.id.add_tipo)
+        bntNovoTipo.setOnClickListener{
+            val intent = Intent(this, NovoTipoActivity::class.java)
             startActivity(intent)
         }
 
-        val btnFornToList = findViewById<Button>(R.id.listar_fornecedor)
-        btnFornToList.setOnClickListener {
-            val intent = Intent(this, InfoFornecedoresActivity::class.java)
+        val bntListarTipo = findViewById<Button>(R.id.listar_tipo)
+        bntListarTipo.setOnClickListener{
+            val intent = Intent(this, InfoTiposActivity::class.java)
             startActivity(intent)
+        }
+
+        val bntMain = findViewById<Button>(R.id.btn_voltar)
+        bntMain.setOnClickListener {
+            finish()
         }
     }
 }
