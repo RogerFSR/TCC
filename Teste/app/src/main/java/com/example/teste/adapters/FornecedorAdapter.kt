@@ -19,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FornecedorAdapter(
-    private val listaFornecedores: List<Fornecedor>,
+    private var listaFornecedores: MutableList<Fornecedor>, // mudou para var
     private val onEditarClickListener: (Fornecedor) -> Unit,
     private val onExcluirClickListener: (Fornecedor) -> Unit
 ) : RecyclerView.Adapter<FornecedorAdapter.FornecedorViewHolder>() {
@@ -52,6 +52,12 @@ class FornecedorAdapter(
         holder.btnExcluir.setOnClickListener {
             onExcluirClickListener(fornecedor)
         }
+    }
+
+    fun updateData(novaLista: List<Fornecedor>) {
+        listaFornecedores.clear()          // limpa a lista atual
+        listaFornecedores.addAll(novaLista) // adiciona os novos itens
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = listaFornecedores.size

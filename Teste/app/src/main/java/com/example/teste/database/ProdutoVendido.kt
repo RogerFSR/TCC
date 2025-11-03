@@ -1,5 +1,4 @@
 package com.example.teste.database
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ForeignKey
@@ -12,19 +11,14 @@ import androidx.room.ForeignKey
             parentColumns = ["nVenda"],
             childColumns = ["nVenda"],
             onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = Produto::class,
-            parentColumns = ["codigobarras"],
-            childColumns = ["codigobarras"],
-            onDelete = ForeignKey.CASCADE
         )
     ]
 )
 data class ProdutoVendido(
-    @PrimaryKey val nVenda: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0, // <- PK do item
+    val nVenda: Int,                                  // <- FK da venda
     val codigobarras: String,
-    val qtd: Int,
+    var qtd: Int,
     val valorvenda: Double,
-    val subtotal: Double
+    var subtotal: Double
 )

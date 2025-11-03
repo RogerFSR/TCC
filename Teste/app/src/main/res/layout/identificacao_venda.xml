@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#1C1C1C"
     android:padding="16dp"
-    tools:context=".VendaActivity">
+    tools:context=".IdentificacaoVendaActivity">
 
     <!-- Título -->
     <TextView

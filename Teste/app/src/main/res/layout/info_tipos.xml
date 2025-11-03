@@ -14,13 +14,17 @@
     <Button
             android:id="@+id/btnVoltarTipos"
             android:layout_width="175dp"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="#D32F2F"
             android:text="Voltar"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:cornerRadius="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     <!-- Botão Novo Tipo -->
     <Button
@@ -34,19 +38,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView Tipos -->
+    <!-- RecyclerView Tipos ajustada -->
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTipos"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="#1C1C1C"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnNovoTipo"
+            app:layout_constraintBottom_toTopOf="@id/btnVoltarTipos"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnVoltarTipos" />
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

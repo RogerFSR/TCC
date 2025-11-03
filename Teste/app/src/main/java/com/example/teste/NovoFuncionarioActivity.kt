@@ -52,8 +52,8 @@ class NovoFuncionarioActivity : AppCompatActivity() {
                 Toast.makeText(this, "Nome é obrigatório!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            if (!telefone.matches(Regex("\\d{8,15}"))) {
+            val telLimpo = telefone.replace(Regex("[^\\d+]"), "")
+            if (!telLimpo.matches(Regex("^\\+?[0-9]{8,15}\$"))) {
                 Toast.makeText(this, "Telefone inválido!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

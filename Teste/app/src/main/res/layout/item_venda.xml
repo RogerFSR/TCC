@@ -4,10 +4,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="#434343FF"
-        app:cardBackgroundColor="#434343"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp">
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#2C2C2C">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -15,54 +14,54 @@
             android:padding="12dp">
 
         <TextView
-                android:id="@+id/tvProdutoNome"
+                android:id="@+id/txtNomeVendaItem"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Produto: Nome do item"
+                android:text="Nome Produto"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-                android:id="@+id/tvPrecoUnitario"
+                android:id="@+id/txtDetalheVendaItem"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Preço Unitário: R$ 10,00"
-                android:textColor="#00FF80"
+                android:text="1 x R$ 9,99 = R$ 9,99"
+                android:textColor="#CCCCCC"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/tvProdutoNome"
+                app:layout_constraintTop_toBottomOf="@id/txtNomeVendaItem"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="6dp"/>
 
-        <TextView
-                android:id="@+id/tvQuantidade"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Quantidade: 2"
-                android:textColor="#B0B0B0"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/tvPrecoUnitario"
+        <!-- Botão EDITAR / adicionar -->
+        <Button
+                android:id="@+id/btnAddQuantidade"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2962FF"
+                app:layout_constraintTop_toBottomOf="@id/txtDetalheVendaItem"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"/>
+
+        <!-- Botão EXCLUIR / remover -->
+        <Button
+                android:id="@+id/btnRemoveQuantidade"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="-"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#F44336"
+                app:layout_constraintTop_toBottomOf="@id/txtDetalheVendaItem"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-                android:id="@+id/tvTotal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Total: R$ 20,00"
-                android:textColor="#00FF80"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/tvQuantidade"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

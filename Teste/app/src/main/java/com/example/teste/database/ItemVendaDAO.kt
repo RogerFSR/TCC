@@ -8,4 +8,5 @@ interface ItemVendaDAO {
 
     @Query("SELECT * FROM itens_venda WHERE vendaId = :vendaId")
     suspend fun getItensByVenda(vendaId: Int): List<ItemVenda>
+
 }

@@ -1,7 +1,7 @@
 package com.example.teste
 
-import android.app.AlertDialog
 import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
@@ -10,8 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.teste.database.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import androidx.lifecycle.lifecycleScope
 
 class NovoProdutoActivity : AppCompatActivity() {
 
@@ -19,49 +19,31 @@ class NovoProdutoActivity : AppCompatActivity() {
     private lateinit var spinnerFornecedor: Spinner
     private var listaTipos = listOf<Tipo>()
     private var listaFornecedores = listOf<Fornecedor>()
+    private lateinit var edtPreco: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.novo_produto)
+
+        // Ajuste de bordas pelo sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnVoltar)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Inicializa os Spinners
         spinnerTipo = findViewById(R.id.spinnerTipo)
         spinnerFornecedor = findViewById(R.id.spinnerFornecedor)
+        edtPreco = findViewById(R.id.edtPreco)
 
-        // Carrega os dados
         carregarTipos()
         carregarFornecedores()
 
-        // Configura o botão Salvar
         findViewById<Button>(R.id.btnSalvar).setOnClickListener {
             salvarProduto()
         }
 
-        val btnAddType = findViewById<Button>(R.id.add_tipo)
-        btnAddType.setOnClickListener {
-            val intent = Intent(this, TiposActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnAddSupplier = findViewById<Button>(R.id.fornecedores)
-        btnAddSupplier.setOnClickListener {
-            val intent = Intent(this, FornecedoresActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnListEstoque = findViewById<Button>(R.id.estoque)
-        btnListEstoque.setOnClickListener{
-            val intent = Intent(this, InfoEstoqueActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Configura o botão Voltar
         findViewById<Button>(R.id.btnVoltar).setOnClickListener {
             if (camposPreenchidos()) {
                 AlertDialog.Builder(this)
@@ -74,6 +56,18 @@ class NovoProdutoActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        findViewById<Button>(R.id.add_tipo).setOnClickListener {
+            startActivity(Intent(this, TiposActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.fornecedores).setOnClickListener {
+            startActivity(Intent(this, FornecedoresActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.estoque).setOnClickListener {
+            startActivity(Intent(this, InfoEstoqueActivity::class.java))
+        }
     }
 
     private fun camposPreenchidos(): Boolean {
@@ -81,11 +75,12 @@ class NovoProdutoActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.edtNome).text.isNotEmpty() ||
                 findViewById<EditText>(R.id.edtEstoqueMin).text.isNotEmpty() ||
                 findViewById<EditText>(R.id.edtEstoqueAtual).text.isNotEmpty() ||
-                findViewById<EditText>(R.id.edtEstoqueMax).text.isNotEmpty()
+                findViewById<EditText>(R.id.edtEstoqueMax).text.isNotEmpty() ||
+                edtPreco.text.isNotEmpty()
     }
 
     private fun carregarTipos() {
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             val db = AppDatabase.getDatabase(this@NovoProdutoActivity)
             listaTipos = db.tipoDAO().getAllTipos()
 
@@ -102,7 +97,7 @@ class NovoProdutoActivity : AppCompatActivity() {
     }
 
     private fun carregarFornecedores() {
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             val db = AppDatabase.getDatabase(this@NovoProdutoActivity)
             listaFornecedores = db.fornecedorDAO().getAllFornecedores()
 
@@ -119,44 +114,38 @@ class NovoProdutoActivity : AppCompatActivity() {
     }
 
     private fun salvarProduto() {
-        val codigoBarras = findViewById<EditText>(R.id.edtCodigoBarras).text.toString()
-        val nome = findViewById<EditText>(R.id.edtNome).text.toString()
+        val codigoBarras = findViewById<EditText>(R.id.edtCodigoBarras).text.toString().trim()
+        val nome = findViewById<EditText>(R.id.edtNome).text.toString().trim()
         val geladeira = findViewById<CheckBox>(R.id.cbGeladeira).isChecked
-        val estoqueMin =
-            findViewById<EditText>(R.id.edtEstoqueMin).text.toString().toIntOrNull() ?: 0
-        val estoqueAtual =
-            findViewById<EditText>(R.id.edtEstoqueAtual).text.toString().toIntOrNull() ?: 0
-        val estoqueMax =
-            findViewById<EditText>(R.id.edtEstoqueMax).text.toString().toIntOrNull() ?: 0
+        val estoqueMin = findViewById<EditText>(R.id.edtEstoqueMin).text.toString().toIntOrNull() ?: 0
+        val estoqueAtual = findViewById<EditText>(R.id.edtEstoqueAtual).text.toString().toIntOrNull() ?: 0
+        val estoqueMax = findViewById<EditText>(R.id.edtEstoqueMax).text.toString().toIntOrNull() ?: 0
+        val preco = edtPreco.text.toString().replace(",", ".").toDoubleOrNull()
 
-        // Validações básicas
+        // Validações
         when {
             codigoBarras.isEmpty() -> {
                 Toast.makeText(this, "Informe o código de barras", Toast.LENGTH_SHORT).show()
                 return
             }
-
             nome.isEmpty() -> {
                 Toast.makeText(this, "Informe o nome do produto", Toast.LENGTH_SHORT).show()
                 return
             }
-
+            preco == null -> {
+                Toast.makeText(this, "Informe um preço válido", Toast.LENGTH_SHORT).show()
+                return
+            }
             listaTipos.isEmpty() -> {
                 Toast.makeText(this, "Nenhum tipo cadastrado", Toast.LENGTH_SHORT).show()
                 return
             }
-
             listaFornecedores.isEmpty() -> {
                 Toast.makeText(this, "Nenhum fornecedor cadastrado", Toast.LENGTH_SHORT).show()
                 return
             }
-
             estoqueMin > estoqueMax -> {
-                Toast.makeText(
-                    this,
-                    "Estoque mínimo não pode ser maior que o máximo",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Estoque mínimo não pode ser maior que o máximo", Toast.LENGTH_SHORT).show()
                 return
             }
         }
@@ -172,13 +161,13 @@ class NovoProdutoActivity : AppCompatActivity() {
             fornecedor = fornecedorSelecionado.cnpj_cpf,
             estoque_min = estoqueMin,
             estoque_atual = estoqueAtual,
-            estoque_max = estoqueMax
+            estoque_max = estoqueMax,
+            preco = preco!! // agora não nulo, safe porque já validamos acima
         )
 
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             val db = AppDatabase.getDatabase(this@NovoProdutoActivity)
             try {
-                // Verifica se produto já existe
                 val produtoExistente = db.produtoDAO().getProdutoByCodBarra(codigoBarras)
                 if (produtoExistente != null) {
                     runOnUiThread {
@@ -190,7 +179,6 @@ class NovoProdutoActivity : AppCompatActivity() {
                     }
                     return@launch
                 }
-
                 db.produtoDAO().insert(produto)
                 runOnUiThread {
                     Toast.makeText(
@@ -208,8 +196,7 @@ class NovoProdutoActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-
+            }
         }
     }
-}
 }

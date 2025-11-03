@@ -13,7 +13,7 @@ import com.example.teste.R
 import com.example.teste.database.Tipo
 
 class TipoAdapter(
-    private val listaTipos: List<Tipo>,
+    private var listaTipos: List<Tipo>,
     private val context: Context,
     private val onDeleteClickListener: (Tipo) -> Unit
 ) : RecyclerView.Adapter<TipoAdapter.TipoViewHolder>() {
@@ -43,6 +43,11 @@ class TipoAdapter(
         holder.btnExcluir.setOnClickListener {
             onDeleteClickListener(tipo)
         }
+    }
+
+    fun updateData(novaLista: MutableList<Tipo>) {
+        listaTipos = novaLista
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = listaTipos.size

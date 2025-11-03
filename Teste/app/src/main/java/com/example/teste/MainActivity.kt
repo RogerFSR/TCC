@@ -45,10 +45,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        val btnGenerateReport = findViewById<Button>(R.id.gerar_recibo)
-//        btnGenerateReport.setOnClickListener{
-//
-//        }
+        val btnGenerateReport = findViewById<Button>(R.id.gerar_recibo)
+        btnGenerateReport.setOnClickListener{
+            val intent = Intent(this, RelatorioActivity::class.java)
+            startActivity(intent)
+        }
 
         val btnListFuncs = findViewById<Button>(R.id.listar_funcs)
         btnListFuncs.setOnClickListener {

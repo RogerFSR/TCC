@@ -15,7 +15,7 @@ import androidx.room.ForeignKey
 )
 data class ItemVenda(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val vendaId: Int,              // referencia a Venda.nVenda
+    val vendaId: Int,              // referência à venda
     val codigo: String,
     val descricao: String,
     val quantidade: Int,

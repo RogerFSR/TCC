@@ -12,12 +12,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.teste.database.AppDatabase
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.*
 
 class IdentificacaoVendaActivity : AppCompatActivity() {
+
     private lateinit var funcionarioInput: EditText
     private lateinit var cpfInput: EditText
     private lateinit var btnContinuar: Button
@@ -28,6 +25,8 @@ class IdentificacaoVendaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.identificacao_venda)
+
+        // Ajusta padding do sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -41,48 +40,54 @@ class IdentificacaoVendaActivity : AppCompatActivity() {
 
         val btnInfosToMain = findViewById<Button>(R.id.infos_to_main)
         btnInfosToMain.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         db = AppDatabase.getDatabase(this)
 
         btnCadastrarCliente.setOnClickListener {
-            val intent = Intent(this, NovoClienteActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, NovoClienteActivity::class.java))
         }
 
         btnContinuar.setOnClickListener {
-            val funcionarioId = funcionarioInput.text.toString().toIntOrNull()
-            val cpfCliente = cpfInput.text.toString()
+            val funcionarioId = funcionarioInput.text.toString().trim().toIntOrNull()
+            val cpfCliente = cpfInput.text.toString().trim().filter { it.isDigit() } // remove máscara
 
-            if (funcionarioId == null || cpfCliente.isBlank()) {
-                Toast.makeText(this, "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
+            if (funcionarioId == null) {
+                Toast.makeText(this, "ID do funcionário inválido", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Verificar se o funcionário e cliente existem no banco
+            if (cpfCliente.length != 11) {
+                Toast.makeText(this, "CPF do cliente inválido", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Acesso seguro ao banco
             lifecycleScope.launch {
-                val funcionario = db.funcionarioDAO().getFuncionarioByRegistro(funcionarioId)
-                val cliente = db.clienteDAO().getClienteByCpf(cpfCliente)
+                try {
+                    val funcionario = db.funcionarioDAO().getFuncionarioByRegistro(funcionarioId)
+                    val cliente = db.clienteDAO().getClienteByCpf(cpfCliente)
 
-                if (funcionario == null) {
-                    Toast.makeText(this@IdentificacaoVendaActivity, "Funcionário não encontrado", Toast.LENGTH_SHORT).show()
-                    return@launch
+                    if (funcionario == null) {
+                        Toast.makeText(this@IdentificacaoVendaActivity, "Funcionário não encontrado", Toast.LENGTH_SHORT).show()
+                        return@launch
+                    }
+
+                    if (cliente == null) {
+                        Toast.makeText(this@IdentificacaoVendaActivity, "Cliente não encontrado. Cadastre antes.", Toast.LENGTH_SHORT).show()
+                        return@launch
+                    }
+
+                    val intent = Intent(this@IdentificacaoVendaActivity, RegistroVendasActivity::class.java).apply {
+                        putExtra("funcionario_id", funcionarioId)
+                        putExtra("cpf_cliente", cpfCliente)
+                    }
+                    startActivity(intent)
+
+                } catch (e: Exception) {
+                    Toast.makeText(this@IdentificacaoVendaActivity, "Erro ao acessar banco: ${e.message}", Toast.LENGTH_LONG).show()
                 }
-
-                if (cliente == null) {
-                    Toast.makeText(this@IdentificacaoVendaActivity, "Cliente não encontrado. Cadastre antes.", Toast.LENGTH_SHORT).show()
-                    return@launch
-                }
-
-
-                val intent = Intent(this@IdentificacaoVendaActivity, RegistroVendasActivity::class.java).apply {
-                    putExtra("funcionario_id", funcionarioId)
-                    putExtra("cpf_cliente", cpfCliente)
-                }
-
-                startActivity(intent)
             }
         }
     }

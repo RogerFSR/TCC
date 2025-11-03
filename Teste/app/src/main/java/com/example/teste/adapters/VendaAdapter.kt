@@ -3,38 +3,55 @@ package com.example.teste.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teste.R
-import com.example.teste.database.ItemVenda
+import com.example.teste.database.ProdutoVendido
+import java.text.NumberFormat
+import java.util.*
 
-class VendaAdapter(private val listaDeItens: List<ItemVenda>) :
-    RecyclerView.Adapter<VendaAdapter.VendaViewHolder>() {
+class VendaAdapter(
+    private val itens: MutableList<ProdutoVendido>,
+    private val onQuantityChanged: (ProdutoVendido) -> Unit
+) : RecyclerView.Adapter<VendaAdapter.VendaViewHolder>() {
 
-    class VendaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvProdutoNome: TextView = itemView.findViewById(R.id.tvProdutoNome)
-        val tvPrecoUnitario: TextView = itemView.findViewById(R.id.tvPrecoUnitario)
-        val tvQuantidade: TextView = itemView.findViewById(R.id.tvQuantidade)
-        val tvTotal: TextView = itemView.findViewById(R.id.tvTotal)
+    private val currencyFormatter: NumberFormat = NumberFormat.getCurrencyInstance(Locale("pt","BR"))
+
+    inner class VendaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val txtNome: TextView = itemView.findViewById(R.id.txtNomeVendaItem)
+        val txtDetalhe: TextView = itemView.findViewById(R.id.txtNomeVendaItem)
+        val btnAdd: Button = itemView.findViewById(R.id.btnAddQuantidade)
+        val btnRemove: Button = itemView.findViewById(R.id.btnRemoveQuantidade)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendaViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_venda, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_venda, parent, false)
         return VendaViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: VendaViewHolder, position: Int) {
-        val item = listaDeItens[position]
+        val item = itens[position]
+        // item.valorvenda e item.qtd e item.codigobarras e item.subtotal
+        holder.txtNome.text = item.codigobarras // substitua por nome se disponível (veja nota)
+        holder.txtDetalhe.text = "${item.qtd} x ${currencyFormatter.format(item.valorvenda)} = ${currencyFormatter.format(item.subtotal)}"
 
-        // Aqui você pode ajustar de acordo com os campos reais do seu ItemVenda
-        holder.tvProdutoNome.text = "Produto: ${item.codigobarras}"
-        holder.tvPrecoUnitario.text = "Preço Unitário: R$ %.2f".format(item.valorUnitario)
-        holder.tvQuantidade.text = "Quantidade: ${item.quantidade}"
+        holder.btnAdd.setOnClickListener {
+            item.qtd = item.qtd + 1
+            item.subtotal = item.qtd * item.valorvenda
+            notifyItemChanged(position)
+            onQuantityChanged(item)
+        }
 
-        val total = item.valorUnitario * item.quantidade
-        holder.tvTotal.text = "Total: R$ %.2f".format(total)
+        holder.btnRemove.setOnClickListener {
+            if (item.qtd > 1) {
+                item.qtd = item.qtd - 1
+                item.subtotal = item.qtd * item.valorvenda
+                notifyItemChanged(position)
+                onQuantityChanged(item)
+            }
+        }
     }
 
-    override fun getItemCount() = listaDeItens.size
+    override fun getItemCount(): Int = itens.size
 }

@@ -43,23 +43,39 @@
 
     <!-- Campo para código de barras -->
     <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:background="#434343"
-        android:hint="Insira o código de barras manualmente"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#B0B0B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirm_sale" />
+            android:id="@+id/editTextText"
+            android:layout_width="261dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:background="#434343"
+            android:hint="Insira o código de barras manualmente"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirm_sale" />
+
+    <!-- Botão de inserção manual -->
 
     <!-- Imagem da câmera para ler código de barras -->
+
+    <Button
+            android:id="@+id/btnInserirManual"
+            android:layout_width="108dp"
+            android:layout_height="61dp"
+            android:backgroundTint="#FF9800"
+            android:text="Inserir Manual"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/editTextText"
+            app:layout_constraintTop_toBottomOf="@+id/sale_to_main"
+            android:layout_marginTop="15dp" />
+
     <androidx.camera.view.PreviewView
         android:id="@+id/cameraPreview"
         android:layout_width="321dp"
@@ -82,14 +98,18 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Lista de itens da venda -->
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerItensVenda"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/divider2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/recyclerItensVenda"
+            android:layout_width="380dp"
+            android:layout_height="206dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

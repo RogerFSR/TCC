@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teste.adapters.TipoAdapter
@@ -17,6 +18,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class InfoTiposActivity : AppCompatActivity() {
 
@@ -53,18 +55,23 @@ class InfoTiposActivity : AppCompatActivity() {
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun carregarTipos() {
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             val db = AppDatabase.getDatabase(this@InfoTiposActivity)
-            val tipos = db.tipoDAO().getAllTipos()
+            val tipos = db.tipoDAO().getAllTipos() // Lista atualizada
 
-            launch(Dispatchers.Main) {
-                adapter = TipoAdapter(tipos, this@InfoTiposActivity) { tipo ->
-                    confirmarExclusao(tipo)
+            withContext(Dispatchers.Main) {
+                if (::adapter.isInitialized) {
+                    adapter.updateData(tipos.toMutableList())
+                } else {
+                    adapter = TipoAdapter(tipos.toMutableList(), this@InfoTiposActivity) { tipo ->
+                        confirmarExclusao(tipo)
+                    }
+                    recyclerView.adapter = adapter
                 }
-                recyclerView.adapter = adapter
             }
         }
     }
+
 
     private fun confirmarExclusao(tipo: Tipo) {
         AlertDialog.Builder(this)

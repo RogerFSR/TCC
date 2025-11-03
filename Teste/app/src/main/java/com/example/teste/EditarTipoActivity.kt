@@ -80,9 +80,10 @@ class EditarTipoActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             db.tipoDAO().update(Tipo(codTipo, novaDesc))
             runOnUiThread {
-                Toast.makeText(this, "Tipo atualizado com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditarTipoActivity, "Tipo atualizado com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
     }
+
 }

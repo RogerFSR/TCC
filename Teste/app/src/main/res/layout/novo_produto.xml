@@ -1,179 +1,201 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/novoProdutoLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#1C1C1C"
-    android:padding="16dp">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/novoProdutoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1C1C1C"
+        android:padding="16dp"
+        tools:layout_editor_absoluteY="78dp"
+        tools:layout_editor_absoluteX="0dp">
 
     <!-- Código de Barras -->
     <EditText
-        android:id="@+id/edtCodigoBarras"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        android:hint="Código de Barras"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#B0B0B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/edtCodigoBarras"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#434343"
+            android:hint="Código de Barras"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Nome do Produto -->
     <EditText
-        android:id="@+id/edtNome"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        android:hint="Nome do Produto"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#B0B0B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCodigoBarras" />
+            android:id="@+id/edtNome"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:background="#434343"
+            android:hint="Nome do Produto"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtCodigoBarras" />
 
     <!-- Tipo -->
     <Spinner
-        android:id="@+id/spinnerTipo"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome"
-        tools:visibility="visible" />
+            android:id="@+id/spinnerTipo"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="#434343"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNome"
+            tools:visibility="visible" />
 
     <!-- Geladeira -->
     <CheckBox
-        android:id="@+id/cbGeladeira"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Produto de Geladeira?"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTipo"
-        app:layout_constraintStart_toStartOf="parent"/>
+            android:id="@+id/cbGeladeira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produto de Geladeira?"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtPreco"
+            android:layout_marginTop="10dp" />
 
     <!-- Fornecedor -->
     <Spinner
-        android:id="@+id/spinnerFornecedor"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbGeladeira" />
+            android:id="@+id/spinnerFornecedor"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="#434343"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbGeladeira"
+            app:layout_constraintHorizontal_bias="0.0" />
 
     <!-- Estoque Mínimo -->
     <EditText
-        android:id="@+id/edtEstoqueMin"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        android:hint="Estoque Mínimo"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#B0B0B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFornecedor" />
+            android:id="@+id/edtEstoqueMin"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:background="#434343"
+            android:hint="Estoque Mínimo"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerFornecedor"
+            app:layout_constraintHorizontal_bias="0.0" />
 
     <!-- Estoque Atual -->
     <EditText
-        android:id="@+id/edtEstoqueAtual"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        android:hint="Estoque Atual"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#B0B0B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMin" />
+            android:id="@+id/edtEstoqueAtual"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:background="#434343"
+            android:hint="Estoque Atual"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMin"
+            app:layout_constraintHorizontal_bias="0.0" />
 
     <!-- Estoque Máximo -->
     <EditText
-        android:id="@+id/edtEstoqueMax"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:background="#434343"
-        android:hint="Estoque Máximo"
-        android:inputType="number"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#B0B0B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueAtual" />
+            android:id="@+id/edtEstoqueMax"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:background="#434343"
+            android:hint="Estoque Máximo"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtEstoqueAtual"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+    <!-- Campo de Preços -->
+    <EditText
+            android:id="@+id/edtPreco"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Preço (R$)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:background="#2C2C2C"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTipo"
+            android:layout_marginTop="16dp" />
 
     <!-- Botão Salvar -->
     <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#388E3C"
-        android:text="Salvar Produto"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMax" />
+            android:id="@+id/btnSalvar"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#388E3C"
+            android:text="Salvar Produto"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtEstoqueMax" />
 
     <!-- Botão Voltar fixo na parte inferior -->
     <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#D32F2F"
-        android:isScrollContainer="false"
-        android:text="@string/btn_voltar"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:id="@+id/btnVoltar"
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#D32F2F"
+            android:text="Voltar"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     <!-- ProgressBar centrado -->
     <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Texto de erro -->
     <TextView
-        android:id="@+id/txtErro"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="#D32F2F"
-        android:visibility="gone"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/btnSalvar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/txtErro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#D32F2F"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnSalvar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
             android:id="@+id/add_tipo"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
             android:backgroundTint="#2962FF"
             android:text="Tipos"
             android:textColorLink="#2962FF"
@@ -182,10 +204,10 @@
 
     <Button
             android:id="@+id/fornecedores"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
             android:backgroundTint="#2962FF"
             android:text="Fornecedor"
             android:textColorLink="#2962FF"
@@ -194,14 +216,14 @@
 
     <Button
             android:id="@+id/estoque"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
             android:backgroundTint="#2962FF"
             android:text="Consultar Estoque"
             android:textColorLink="#2962FF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fornecedores"
-            android:layout_marginTop="5dp" />
+            app:layout_constraintTop_toBottomOf="@+id/btnSalvar"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

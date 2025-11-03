@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.google.android.material.button.MaterialButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teste.R
 import com.example.teste.database.Venda
 import com.example.teste.utils.PdfHelper
+import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
 
 class RelatorioVendaAdapter(
     private val listaVendas: List<Venda>
@@ -23,8 +24,7 @@ class RelatorioVendaAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendaViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_relatorio, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_relatorio, parent, false)
         return VendaViewHolder(view)
     }
 
@@ -37,9 +37,12 @@ class RelatorioVendaAdapter(
         holder.textPagou.text = "Pagou: ${if (venda.pagou) "Sim" else "Não"}"
 
         holder.btnImprimir.setOnClickListener {
-            PdfHelper.gerarPdfVenda(holder.itemView.context, venda)
+            val context = holder.itemView.context
+            val vendaAtual = venda
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).launch {
+                PdfHelper.gerarPdfVendaPublicDocuments(context, vendaAtual)
+            }
         }
-
 
     }
 

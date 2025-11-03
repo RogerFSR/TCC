@@ -30,5 +30,6 @@ data class Produto(
     val fornecedor: String,
     val estoque_min: Int,
     val estoque_atual: Int,
-    val estoque_max: Int
+    val estoque_max: Int,
+    val preco: Double
 )
