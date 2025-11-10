@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="#1C1C1C"
+        tools:context=".EntradaProdutoActivity">
+
+    <!-- Título -->
+    <TextView
+            android:id="@+id/titleEntrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entrada de Produto"
+            android:textSize="20sp"
+            android:textColor="#C31717"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Nº Entrada -->
+    <EditText
+            android:id="@+id/inputNEntrada"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Número da Entrada"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/titleEntrada"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
+
+    <!-- Código de Barras -->
+    <EditText
+            android:id="@+id/inputCodBarras"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Código de Barras"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/inputNEntrada"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Quantidade -->
+    <EditText
+            android:id="@+id/inputQtd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Quantidade"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/inputCodBarras"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Valor de Compra -->
+    <EditText
+            android:id="@+id/inputValorCompra"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Valor de Compra (R$)"
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/inputQtd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Subtotal -->
+    <EditText
+            android:id="@+id/inputSubtotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Subtotal (R$)"
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/inputValorCompra"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Lote -->
+    <EditText
+            android:id="@+id/inputLote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Lote"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/inputSubtotal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Validade -->
+    <EditText
+            android:id="@+id/inputValidade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Validade (dd/mm/aaaa)"
+            android:inputType="date"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            android:background="#2C2C2C"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/inputLote"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+    <!-- Botões -->
+    <Button
+            android:id="@+id/btnSalvarEntrada"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Salvar Entrada"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFF"
+            app:layout_constraintTop_toBottomOf="@id/inputValidade"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnVoltarEntrada"
+            app:layout_constraintWidth_percent="0.45"
+            android:layout_marginTop="12dp" />
+
+    <Button
+            android:id="@+id/btnVoltarEntrada"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFF"
+            app:layout_constraintTop_toBottomOf="@id/inputValidade"
+            app:layout_constraintStart_toEndOf="@id/btnSalvarEntrada"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.45"
+            android:layout_marginTop="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

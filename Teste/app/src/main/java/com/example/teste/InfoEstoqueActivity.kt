@@ -42,12 +42,16 @@ class InfoEstoqueActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerViewProdutos)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ProdutoAdapter(emptyList(),
+        adapter = ProdutoAdapter(
+            emptyList(),
             onEditarClickListener = { produto ->
                 abrirEdicaoProduto(produto)
             },
             onExcluirClickListener = { produto ->
                 confirmarExclusao(produto)
+            },
+            onEntradaEstoqueClickListener = { produto ->
+                abrirEntradaEstoque(produto) // novo listener
             }
         )
         recyclerView.adapter = adapter
@@ -70,12 +74,16 @@ class InfoEstoqueActivity : AppCompatActivity() {
             val produtos = db.produtoDAO().getAllProdutos()
 
             launch(Dispatchers.Main) {
-                adapter = ProdutoAdapter(produtos,
+                adapter = ProdutoAdapter(
+                    produtos,
                     onEditarClickListener = { produto ->
                         abrirEdicaoProduto(produto)
                     },
                     onExcluirClickListener = { produto ->
                         confirmarExclusao(produto)
+                    },
+                    onEntradaEstoqueClickListener = { produto ->
+                        abrirEntradaEstoque(produto)
                     }
                 )
                 recyclerView.adapter = adapter
@@ -85,6 +93,14 @@ class InfoEstoqueActivity : AppCompatActivity() {
 
     private fun abrirEdicaoProduto(produto: Produto) {
         val intent = Intent(this, EditarProdutoActivity::class.java).apply {
+            putExtra("COD_BARRAS", produto.codigobarras)
+        }
+        startActivity(intent)
+    }
+
+    // 🔹 Novo método modelado (sem Activity real ainda)
+    private fun abrirEntradaEstoque(produto: Produto) {
+        val intent = Intent(this, /* TODO: Substituir pelo nome da Activity futura */ NovoLayoutActivity::class.java).apply {
             putExtra("COD_BARRAS", produto.codigobarras)
         }
         startActivity(intent)

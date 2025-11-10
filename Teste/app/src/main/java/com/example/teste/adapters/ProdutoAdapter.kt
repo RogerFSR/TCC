@@ -1,5 +1,6 @@
 package com.example.teste.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,8 @@ import com.example.teste.database.Produto
 class ProdutoAdapter(
     private var produtos: List<Produto>,
     private val onEditarClickListener: (Produto) -> Unit,
-    private val onExcluirClickListener: (Produto) -> Unit
+    private val onExcluirClickListener: (Produto) -> Unit,
+    private val onEntradaEstoqueClickListener: (Produto) -> Unit // novo callback
 ) : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>() {
 
     inner class ProdutoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -22,6 +24,7 @@ class ProdutoAdapter(
         val txtTipoFornecedor: TextView = itemView.findViewById(R.id.txtTipoFornecedor)
         val btnEditar: Button = itemView.findViewById(R.id.btnEditarProduto)
         val btnExcluir: Button = itemView.findViewById(R.id.btnExcluirProduto)
+        val btnEntrada: Button = itemView.findViewById(R.id.btnEntradaEstoque) // novo botão
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProdutoViewHolder {
@@ -39,6 +42,7 @@ class ProdutoAdapter(
 
         holder.btnEditar.setOnClickListener { onEditarClickListener(produto) }
         holder.btnExcluir.setOnClickListener { onExcluirClickListener(produto) }
+        holder.btnEntrada.setOnClickListener { onEntradaEstoqueClickListener(produto) } // novo listener
     }
 
     override fun getItemCount(): Int = produtos.size

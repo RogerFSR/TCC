@@ -61,13 +61,6 @@ class NovoProdutoActivity : AppCompatActivity() {
             startActivity(Intent(this, TiposActivity::class.java))
         }
 
-        findViewById<Button>(R.id.fornecedores).setOnClickListener {
-            startActivity(Intent(this, FornecedoresActivity::class.java))
-        }
-
-        findViewById<Button>(R.id.estoque).setOnClickListener {
-            startActivity(Intent(this, InfoEstoqueActivity::class.java))
-        }
     }
 
     private fun camposPreenchidos(): Boolean {
